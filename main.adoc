@@ -1,0 +1,290 @@
+= Technical Architecture Document (TAD)
+Author: Pauline Contat  
+Date: 5 March  
+:toc:  
+:toclevels: 3  
+
+== Introduction  
+- Purpose of the document  
+- References  
+
+== 1. Prerequisites and Functional Breakdown  
+=== 1.1 Functional Neighborhoods and Microservices Breakdown
+
+==== User Stories
+
+===== Authentication and Authorization
+
+As a guest user, I want to sign up so that I can create an account and access the platform.
+
+As a guest user, I want to sign in so that I can access my account.
+
+As a registered user, I want to update my profile so that I can keep my information up to date.
+
+As a registered user, I want to reset my password so that I can recover my account.
+
+===== Server Management
+
+As a server admin, I want to create a server so that I can manage a community.
+
+As a server admin, I want to delete a server so that I can remove it permanently.
+
+As a server admin, I want to update server settings so that I can configure the server according to my needs.
+
+As a server admin, I want to manage roles and permissions so that I can control access to different features.
+
+===== Channel Management
+
+As a server admin, I want to create a channel so that I can organize discussions.
+
+As a server admin, I want to delete a channel so that I can remove unnecessary channels.
+
+As a server admin, I want to update channel settings so that I can configure the channel according to my needs.
+
+As a server admin, I want to move channels so that I can reorder them.
+
+As a registered user, I want to join a video or vocal call in a channel so that I can communicate in real-time with other users.
+
+As a registered user, I want to share my screen during a call so that I can present content to others.
+
+===== Messaging
+
+As a registered user, I want to send messages in a channel so that I can communicate with other members.
+
+As a registered user, I want to edit my messages so that I can correct mistakes.
+
+As a registered user, I want to delete my messages so that I can remove them.
+
+As a registered user, I want to pin messages so that important messages are highlighted.
+
+===== User Interaction
+
+As a registered user, I want to send friend requests so that I can connect with other users.
+
+As a registered user, I want to accept friend requests so that I can add new friends.
+
+As a registered user, I want to send private messages so that I can communicate directly with friends.
+
+===== Notifications
+
+As a registered user, I want to receive notifications for friend requests so that I am aware when someone wants to connect.
+
+As a registered user, I want to receive notifications for private messages so that I know when someone contacts me.
+
+As a registered user, I want to receive notifications when I am mentioned in a channel so that I can respond quickly.
+
+===== Moderation
+
+As a moderator, I want to delete inappropriate messages so that I can maintain a healthy community environment.
+
+As a moderator, I want to ban users so that I can remove disruptive users from the server.
+
+As a moderator, I want to mute users so that I can temporarily restrict their ability to send messages.
+
+==== Functional Neighborhoods
+
+===== Authentication and Authorization
+
+Sign Up
+
+Sign In
+
+User Profile Management
+
+===== Server Management
+
+Create Server
+
+Delete Server
+
+Update Server Settings
+
+Manage Roles and Permissions
+
+===== Channel Management
+
+Create Channel
+
+Delete Channel
+
+Update Channel Settings
+
+Move Channels
+
+Join Video/Vocal Calls
+
+Share Screen
+
+===== Messaging
+
+Send Messages
+
+Edit Messages
+
+Delete Messages
+
+Pin Messages
+
+===== User Interaction
+
+Send Friend Requests
+
+Accept Friend Requests
+
+Send Private Messages
+
+===== Notifications
+
+Receive Friend Request Notifications
+
+Receive Private Message Notifications
+
+Receive Mention Notifications
+
+===== Moderation
+
+Delete Inappropriate Messages
+
+Ban Users
+
+Mute Users
+
+- Architecture diagram of the microservices  
+
+== 2. Authentication and Identity Management  
+=== 2.1 Authentication System with OIDC  
+- Overview of authentication strategy  
+- Architecture diagram of authentication flow  
+- Deployment diagram for Beep and OIDC  
+- Sequence diagrams for:  
+  * User creates Beep account (vanilla)  
+  * User creates Beep account (Polytech)  
+  * User creates Beep account (Google)  
+  * User logs in (vanilla)  
+  * User logs in (Polytech)  
+  * User associates Google account with Beep account  
+- Constraints and security considerations  
+- Proof of Concept (POC):  
+  * Deployment guide  
+  * Source code  
+  * Functional deployment  
+
+== 3. Microservices Communication  
+=== 3.1 Orchestration and Communication Between Microservices  
+- Chosen approach (API Gateway, ....
+- Communication protocols used (HTTP or RPC)  
+- Sequence diagram of microservice interactions  
+- Proof of Concept (POC) for inter-microservice communication (HelloWorld example)  
+
+== 4. Authorization System  
+=== 4.1 Implementation of an Authorization System  
+- Definition of an authorization service  
+- Technical and functional architecture  
+- Recommended technologies  
+- Sequence diagrams for main authorization flows  
+- Permissions management strategy:  
+  * Server-level permissions  
+  * Category and channel permissions  
+  * Global admin permissions  
+
+== 5. Logging and Monitoring  
+=== 5.1 Log Tracing and Query Observation  
+- System and technical components for logging  
+- Deployment diagram for logging infrastructure  
+- Sequence diagram illustrating a user query  
+- Security logging requirements for SOC integration  
+
+== 6. Production-Ready System  
+=== 6.1 System Reliability and Observability  
+- Data security, backup, and restoration strategies  
+- Observability and supervision in enterprise environments  
+- High availability and continuity planning  
+- Diagrams for each reliability measure  
+- Target architecture diagram  
+
+== 7. Conclusion  
+- Summary of key architecture choices  
+- Next steps and recommendations  
+
+== 8. Appendices  
+- References  
+- Additional diagrams  
+
+
+
+
+
+
+== Questions / brouillon
+
+Via the redaction of the TAD (components architecture, sequences diagram, deployment architecture, etc.)
+Via the production of POCs (when mentioned)
+For your schema, use draw.io
+Redact your report using asciidoc
+
+Q1: Starting with the prerequisites, what do you propose to separate your application into functional neighborhoods and microservices?
+Redefine all functionalities in the form:
+“As [guest user / server admin / ...], I want to [create a channel / ...] so that [the user can self-assess his channel / ...]”
+Organize these proposals into coherent functional neighborhoods
+Propose an architecture diagram for the breakdown of your application into (functional) microservices.
+Help resources: 
+https://martinfowler.com/bliki/BoundedContext.html
+https://martinfowler.com/articles/break-monolith-into-microservices.html
+https://leofvo.me/articles/microservices-for-the-win
+
+Q2: How do I manage the authentication system with an OIDC?
+Draw an architecture diagram of your application
+Present the deployment diagram for your Beep application and the OIDC
+Present sequence diagrams of the following actions:
+User creates Beep account (vanilla)
+User creates Beep account (via Polytech account)
+User creates Beep account (via Google account)
+User logs in (vanilla)
+User logs in (Polytech)
+User associates their Google account with their Beep account
+Constraints: 
+OIDC will be Keycloak
+A user can log in with his Polytech account (=> Polytech LDAP access via OIDC - to be taken into account in your deployment scheme)
+A user can associate his user account with a Google account
+Make a POC by modifying the current Beep, and implementing the following cases: vanilla account creation, Google account creation, vanilla connection, Google connection.
+POC delivery: deployment guide, source code + functional deployment on your server (give login url)
+
+
+Q3. Inter microservices communication
+How will you orchestrate inter-microservice communication? API systems? Protocols used, etc.
+Explain your approach
+Make a sequence diagram of the communication between some of your services to present your approach.
+Make a POC of communication between two microservices (helloworld) using the system you intend to implement.
+
+--> answer : HTTP or RPC
+
+
+Q4: How would you implement an authorization system ?
+Define what is a authorization service.
+Define the technical and functional architecture and the technologies you recommend.
+Present different sequence diagrams for the application's main actions.
+
+Note: Your solution should enable you to manage permissions by server, category and channel.
+You'll also need to set global permissions for platform administrators.
+
+Q5. How can I trace logs and queries?
+We want to be able to observe the system's behavior in response to a user request.
+Define the system and the technical components to be implemented.
+Draw a deployment diagram of the various elements
+Draw a sequence diagram of a query (of your choice) to illustrate how your system works.
+Describe the needs of “security based logs”, to plug your system into a managed SOC
+
+
+Q6: Production ready system
+Describe in a detailed matter how do you manage :
+Data security, data backup and restore
+Observability, and services supervision integrated to an existing enterprise system
+Infrastructure high disponibility, continuity plans
+Draw up diagrams, in each of the cases
+Draw up a target diagram
+
+
+
+5 march: presentation of a draft of your report
+Show asciidoc template in place, 
+drafts of answers to questions (30-50%), images, etc.
