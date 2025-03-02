@@ -1,0 +1,79 @@
+= Questions to answer to migrrate Beep from monolith to microservices
+
+== Q1: Starting with the prerequisites, what do you propose to separate your application into functional neighborhoods and microservices?
+
+Redefine all functionalities in the form:
+“As [guest user / server admin / ...], I want to [create a channel / ...] so that [the user can self-assess his channel / ...]”
+Organize these proposals into coherent functional neighborhoods
+Propose an architecture diagram for the breakdown of your application into (functional) microservices.
+Help resources: 
+https://martinfowler.com/bliki/BoundedContext.html
+https://martinfowler.com/articles/break-monolith-into-microservices.html
+https://leofvo.me/articles/microservices-for-the-win
+
+== Q2: How do I manage the authentication system with an OIDC?
+
+Draw an architecture diagram of your application
+Present the deployment diagram for your Beep application and the OIDC
+Present sequence diagrams of the following actions:
+User creates Beep account (vanilla)
+User creates Beep account (via Polytech account)
+User creates Beep account (via Google account)
+User logs in (vanilla)
+User logs in (Polytech)
+User associates their Google account with their Beep account
+Constraints: 
+OIDC will be Keycloak
+A user can log in with his Polytech account (=> Polytech LDAP access via OIDC - to be taken into account in your deployment scheme)
+A user can associate his user account with a Google account
+Make a POC by modifying the current Beep, and implementing the following cases: vanilla account creation, Google account creation, vanilla connection, Google connection.
+POC delivery: deployment guide, source code + functional deployment on your server (give login url)
+
+== Q3. Inter microservices communication
+
+How will you orchestrate inter-microservice communication? API systems? Protocols used, etc.
+Explain your approach
+Make a sequence diagram of the communication between some of your services to present your approach.
+Make a POC of communication between two microservices (helloworld) using the system you intend to implement.
+
+== Q4: How would you implement an authorization system ?
+
+Define what is a authorization service.
+Define the technical and functional architecture and the technologies you recommend.
+Present different sequence diagrams for the application's main actions.
+
+Note: Your solution should enable you to manage permissions by server, category and channel.
+You'll also need to set global permissions for platform administrators.
+
+== Q5. How can I trace logs and queries?
+
+We want to be able to observe the system's behavior in response to a user request.
+Define the system and the technical components to be implemented.
+Draw a deployment diagram of the various elements
+Draw a sequence diagram of a query (of your choice) to illustrate how your system works.
+Describe the needs of “security based logs”, to plug your system into a managed SOC
+
+== Q6: Production ready system
+
+Describe in a detailed matter how do you manage :
+Data security, data backup and restore
+Observability, and services supervision integrated to an existing enterprise system
+Infrastructure high disponibility, continuity plans
+Draw up diagrams, in each of the cases
+Draw up a target diagram
+
+== Q8: How do I add a search engine?
+
+Make a functional and technical proposal for the search engine.
+We want the user to have a full-text indexing engine.
+For example, a user typing the keyword “rabbit” (but this could be a string of words) should have all messages, etc. containing this keyword brought up in a user interface.
+Make a UI mockup (sketch) of the different phases of the use case.
+Propose a technical stack and the indexing and search sequence diagram.
+
+== Q9. How to manage platform security issues
+
+Analyze how you secure the various components of your architecture (network, microservices, etc.).
+How do you secure communications between microservices?
+Present your security proposal, using sequence diagrams to show how your system will work.
+
+Make a Poc of securing helloworld microservices with each other and with the outside world.
