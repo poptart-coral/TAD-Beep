@@ -1,7 +1,17 @@
 == 4. Authorization System  
 === 4.1 Authorization service definition 
 
+an authorization service is a system that determines whether a user or service has permission to perform a certain action or access a certain resource. it usually works alongside an authentication service (which verifies identity) but focuses on what a user can or cannot do once authenticated.
+
+it can be based on role-based access control (RBAC), attribute-based access control (ABAC ), or policy-based access control (PBAC).
+
+Articles to read:
+https://medium.com/@kgignatyev/unification-of-authorization-for-ui-and-backend-with-casbin-1523758658f7
+https://medium.com/@rohanraman6/integrating-keycloak-for-authentication-and-authorization-a-step-by-step-guide-72bd382a2bd1
+
 === 4.2 Technical and functional architecture and the technologies I recommend
+
+
 
 === 4.3 Sequence diagrams for the application's main actions
 
