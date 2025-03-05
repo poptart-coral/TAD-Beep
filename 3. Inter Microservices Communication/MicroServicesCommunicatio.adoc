@@ -1,0 +1,16 @@
+== 3. Inter microservices communication
+=== 3.1 Inter-microservice communication orchestration, API systems, protocols used
+
+==== 3.1.1 API Gateway
+First of all, every request coming from the client, before reaching the different microservices, will go through an **API Gateway**. It allows the user to **authenticate** and **authorize** requests, ensuring only legitimate users can access the system. The gateway **routes** the different requests incoming from the client to the appropriate microservices, **enforces rate limiting** to prevent abuse, and can **cache** frequently requested data to improve performance. Additionally, it can **log** requests and responses, providing valuable insights for debugging and monitoring. The API Gateway also acts as a **security layer**, protecting microservices from direct exposure and potential attacks.
+
+==== 3.1.2 Communication Protocols
+The chosen approach for inter-microservice communication is to use **RESTful APIs** over **HTTP**. This approach is widely adopted, easy to implement, and allows seamless integration between services. Each microservice will expose its own API, which other services can call to exchange data. 
+
+**Service discovery** will be handled using **Kubernetes DNS**, allowing microservices to dynamically locate and communicate with each other using service names such as `friends-service.beep.svc.cluster.local`. 
+
+To ensure secure communication, inter-microservice requests will be managed by a **Service Mesh** (Istio for example). The Service Mesh will provide automatic **service-to-service authentication** using **mTLS** (Mutual TLS), ensuring that only authorized microservices can communicate with each other. It will also handle traffic management, load balancing, observability, and circuit breaking, ensuring a **resilient and secure** inter-microservice communication.
+
+
+=== 3.2 Sequence diagram
+Make a sequence diagram of the communication between some of your services to present your approach.

@@ -1,0 +1,9 @@
+== 4. Authorization System  
+=== 4.1 Authorization service definition 
+
+=== 4.2 Technical and functional architecture and the technologies I recommend
+
+=== 4.3 Sequence diagrams for the application's main actions
+
+Note: Your solution should enable you to manage permissions by server, category and channel.
+You'll also need to set global permissions for platform administrators.

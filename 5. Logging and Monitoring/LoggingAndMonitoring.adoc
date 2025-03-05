@@ -1,0 +1,11 @@
+== 5. Logging and Monitoring  
+
+We want to be able to observe the system's behavior in response to a user request.
+
+=== 5.1 system and the technical components to be implemented definition  
+
+=== 5.2 Deployment diagram of the various elements
+
+=== 5.3 Sequence diagram of a query to illustrate how the system works
+
+=== 5.4 Needs of “security based logs”, to plug the system into a managed SOC

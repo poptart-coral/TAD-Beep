@@ -1,0 +1,4 @@
+=== 6.3 Management of Infrastructure High Availability, Continuity Plans
+==== 6.3.1 High Availability
+==== 6.3.2 Continuity Plans
+==== 6.3.3 Diagrams

@@ -1,0 +1,26 @@
+== Technical Architecture document (TAD) of the "Discord-like" Beep
+
+> This TAD is still a work in progress
+
+This TAD is created in order to guide the migration of the Beep monolithic web app to a microservices architectured web app.
+
+=== Overview
+
+The TAD provides a comprehensive plan for breaking down the Beep web app into functional microservices. It includes detailed descriptions of the architecture, deployment strategies, and communication protocols between microservices.
+
+=== Contents
+
+- **main.adoc**: This file contains detailed answers to all the questions posed in the TAD, including the functional breakdown, architecture diagrams, and sequence diagrams.
+- **questions.adoc**: This file contains all the different questions of the TAD.
+- **diagrams**: This folder contains all the diagrams (sequence, architecture, deployment) npresent in the TAD.
+
+=== Key Sections
+
+- Introduction
+- Prerequisites and functional breakdown
+- Authentication and Identity Management
+- Microservices Communication
+- Authorization system
+- Logging and Monitoring
+- Production-Ready System
+- Conclusion

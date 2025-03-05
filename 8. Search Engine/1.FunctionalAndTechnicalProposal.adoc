@@ -1,0 +1,4 @@
+== 8. Search Engine
+=== 8.1 Functional and Technical Proposal for the Search Engine
+We want the user to have a full-text indexing engine.
+For example, a user typing the keyword “rabbit” (but this could be a string of words) should have all messages, etc. containing this keyword brought up in a user interface.

@@ -1,0 +1,51 @@
+=== 1.2 Functional Neighborhoods
+
+==== Authentication and Authorization
+
+- Sign Up
+- Sign In
+- Reset Password
+
+==== User Profile Management
+
+- Update Profile
+- Change Password
+- Enable Two-Factor Authentication
+
+==== Server Management
+
+- Create Server
+- Delete Server
+- Update Server Settings
+- Manage Roles and Permissions
+
+==== Channel Management
+
+- Create Channel
+- Delete Channel
+- Update Channel Settings
+- Move Channels
+- Join Video/Vocal Calls
+- Share Screen
+
+==== Messaging
+
+- Send Messages
+- Edit Messages
+- Delete Messages
+- Pin Messages
+- Send private messages
+- Mention Users
+
+==== Friends
+
+- Send Friend Requests
+- Accept Friend Requests
+- Delete Friendship
+
+
+==== Notifications
+
+- Receive Friend Request Notifications
+- Receive Private Message Notifications
+- Receive Mention Notifications
