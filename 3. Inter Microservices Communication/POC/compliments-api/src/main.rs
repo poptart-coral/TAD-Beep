@@ -32,12 +32,12 @@ async fn main() {
         .allow_origin(Any)
         .allow_methods(Any)
         .allow_headers(Any);
-    
+
     let app = Router::new()
-    .route("/compliment", get(compliment))
+    .route("/api/compliment", get(compliment))
     .layer(cors);
 
-    let addr = SocketAddr::from(([127, 0, 0, 1], 3000));
+    let addr = SocketAddr::from(([0, 0, 0, 0], 3000));
     println!("listening on {}", addr);
     axum_server::bind(addr)
         .serve(app.into_make_service())

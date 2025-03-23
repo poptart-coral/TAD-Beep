@@ -1,0 +1,30 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: compliments-ingress
+  namespace: compliments
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: web
+spec:
+  rules:
+    - host: front.local
+      http:
+        paths:
+          # Frontend
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: front
+                port:
+                  number: 80
+
+          # API
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: compliments-api
+                port:
+                  number: 3000
