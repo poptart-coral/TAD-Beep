@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front
+  namespace: compliments
+  labels:
+    app: front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: front
+  template:
+    metadata:
+      labels:
+        app: front
+    spec:
+      containers:
+        - name: front
+          image: popopolette/front:latest
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: config-volume
+              mountPath: /usr/share/nginx/html/config.js
+              subPath: config.js
+      volumes:
+        - name: config-volume
+          configMap:
+            name: front-config
