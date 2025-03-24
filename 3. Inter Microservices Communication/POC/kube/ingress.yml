@@ -8,8 +8,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-    - host: front.local
-      http:
+    - http:
         paths:
           # Frontend
           - path: /

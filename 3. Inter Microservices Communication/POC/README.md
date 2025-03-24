@@ -8,6 +8,18 @@ This project demonstrates a **Proof of Concept (POC) for microservices communica
 - **Modular and dynamic access** thanks to `config.js` injected by `ConfigMap`
 - A **Traefik Ingress** to access the application via a URL on a private or public IP
 
+## Prerequisites
+
+Before deploying this POC, ensure you have the following:
+
+- **Kubernetes cluster:** A running Kubernetes cluster (e.g., Minikube, Kind, or a cloud-based Kubernetes service).
+- **kubectl:**  The Kubernetes command-line tool (`kubectl`) installed and configured to connect to your cluster.
+- **Linkerd CLI:** The Linkerd command-line interface (`linkerd`) installed.
+- **wasm-pack:**  The `wasm-pack` tool for building the Yew frontend.
+- **Rust toolchain:**  A Rust development environment with `cargo` for building the backend and frontend.
+- **Traefik (optional):** If you intend to use Traefik Ingress, ensure it's installed on your cluster.
+- **Basic understanding of Kubernetes concepts:** Familiarity with Deployments, Services, ConfigMaps, and Ingress.
+
 ## Deployment
 
 1.  **Apply Kubernetes manifests:**

@@ -5,4 +5,4 @@ metadata:
   namespace: compliments
 data:
   config.js: |
-    window.API_URL = "http://front.local/api";
+    window.API_URL = "/api";

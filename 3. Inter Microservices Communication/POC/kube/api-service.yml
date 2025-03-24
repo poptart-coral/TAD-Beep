@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: compliments-api
   namespace: compliments
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   selector:
     app: compliments-api

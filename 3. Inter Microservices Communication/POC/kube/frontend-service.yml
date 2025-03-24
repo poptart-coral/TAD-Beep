@@ -3,8 +3,6 @@ kind: Service
 metadata:
   name: front
   namespace: compliments
-  annotations:
-    linkerd.io/inject: enabled
 spec:
   type: NodePort
   selector:
