@@ -28,36 +28,116 @@ Before deploying this POC, ensure you have the following:
     kubectl apply -f kube/
     ```
 
-2.  **Install Linkerd:** If you don't have Linkerd installed, follow the official Linkerd documentation to install it on your Kubernetes cluster.  A basic install looks like this:
+2.  **Install Linkerd:** Follow the official Linkerd documentation to install the service mesh on your Kubernetes cluster:
 
     ```bash
-    curl -sL https://run.linkerd.io/install | sh
+    # Install the CLI
+    curl --proto '=https' --tlsv1.2 -sSfL https://run.linkerd.io/install | sh
+    
+    # Add linkerd to your path
     export PATH=$PATH:$HOME/.linkerd2/bin
+    
+    # Validate your Kubernetes cluster is ready for Linkerd
     linkerd check --pre
+    
+    # Install the control plane onto your cluster
     linkerd install | kubectl apply -f -
+    
+    # Install the viz extension for observability
+    linkerd viz install | kubectl apply -f -
+    
+    # Verify everything worked correctly
     linkerd check
     ```
 
-3.  **Inject Linkerd proxy:** Make sure your namespaces and deployments are injected with the Linkerd proxy.  You can inject a namespace with:
+3.  **Add annotations for Linkerd injection:** You can mesh your services by adding the Linkerd proxy sidecar to each pod :
 
     ```bash
-    kubectl get namespace default -o yaml | linkerd inject - | kubectl apply -f -
+    # Annotate namespace for automatic injection (recommended)
+    kubectl annotate namespace default linkerd.io/inject=enabled
+    
+    # Restart deployments to apply the mesh to existing pods
+    kubectl rollout restart deployment
     ```
 
-    Or inject individual deployments:
+4.  **Verify mesh enablement:** Check if your pods are now part of the service mesh:
 
     ```bash
-    kubectl get deployment your-deployment-name -n your-namespace -o yaml | linkerd inject - | kubectl apply -f -
+    # Check that your pods have the Linkerd proxy
+    kubectl get pods -o jsonpath='{.items[*].metadata.name}' | xargs -n1 kubectl get pod -o yaml | grep linkerd.io/proxy-version
+    
+    # Verify the Linkerd proxy is running in all your pods
+    kubectl get pods -o wide
     ```
 
-4.  **(Optional) Access the application:** If you're using Traefik Ingress, configure your DNS or `/etc/hosts` file to point to the Traefik Ingress IP address. Then, access the application via the configured URL.  If you're using a LoadBalancer service instead, get the external IP and access the application via that IP.
+5.  **(Optional) Access the application:** If you're using Traefik Ingress, configure your DNS or `/etc/hosts` file to point to the Traefik Ingress IP address. Then, access the application via the configured URL.  If you're using a LoadBalancer service instead, get the external IP and access the application via that IP.
 
 ## Configuration
 
 The `config.js` file is injected via a `ConfigMap` to allow dynamic configuration of the frontend, such as the API URL.  Modify the `kube/configmap.yaml` file to change the API URL.
 
+## Verifying Inter-Service Communication Without GUI
+
+You can verify the communication between your microservices using Linkerd's CLI tools without needing the dashboard:
+
+1. **Check service dependencies and traffic flow:**
+
+   ```bash
+   # View live traffic metrics between services
+   linkerd viz stat deployments
+   
+   # Check specific service-to-service communication
+   linkerd viz stat svc/frontend svc/backend
+   
+   # Get detailed traffic metrics for a deployment
+   linkerd viz tap deploy/backend
+   ```
+
+2. **Analyze service health and performance:**
+
+   ```bash
+   # Check the overall health of your services
+   linkerd viz check
+   
+   # Get detailed service performance metrics
+   linkerd viz top deploy
+   ```
+
+3. **Trace requests through your service mesh:**
+
+   ```bash
+   # Watch live requests between services
+   linkerd viz tap -n default deploy
+   
+   # Target specific deployment with output limiting
+   linkerd viz tap deploy/frontend --to deploy/backend -o wide
+   ```
+
+4. **Generate test traffic to verify connections:**
+
+   ```bash
+   # Use kubectl to send requests through the mesh
+   kubectl exec -it deploy/frontend -- curl -v http://backend:8080/compliment
+   
+   # Simple load testing with multiple requests
+   for i in $(seq 1 10); do kubectl exec -it deploy/frontend -- curl http://backend:8080/compliment; done
+   ```
+
+5. **Verify mTLS encryption between services:**
+
+   ```bash
+   # Check which services have mTLS enabled
+   linkerd viz edges deployment
+   
+   # Get detailed mTLS stats
+   linkerd viz edges deployment -o wide
+   ```
+
+These commands allow you to thoroughly validate that your services are communicating properly through the Linkerd service mesh without requiring the graphical dashboard.
+
 ## Notes
 
 *   This is a basic POC and may need further adjustments for production environments.
 *   Ensure that your Kubernetes cluster has sufficient resources to run the microservices.
-*   Check the Linkerd dashboard for observability and metrics.
+*   For more advanced debugging, you can use the Linkerd dashboard: `linkerd viz dashboard`
+*   The Linkerd service mesh provides automatic mTLS encryption between services without any code changes.
