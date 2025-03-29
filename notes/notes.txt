@@ -1,0 +1,40 @@
+TO DO :
+- Modifier le plan
+- Tout relire et vérifier qu'il n'y a pas des trucs inutiles style définitions
+- Ajouter de la précision sur l'infrastrcture, VM Proxmox, serveur à Polytech, VPN de Polytech
+- Expliquer le POC service Mesh, tuto pour déployer ds un kube avec le service Mesh, + expliquer l'intérêt du POC, + lien
+- exporter au format pdf, refaire du coup la structure du truc
+
+Priorité : 
+- Expliquer le POC service Mesh, tuto pour déployer ds un kube avec le service Mesh, + expliquer l'intérêt du POC
+- exporter au format pdf, refaire du coup la structure du adoc car ref ne marche pas
+- commencer a faire les autres questions : logs and queries, production ready system, search, platform security issues
+
+
+Schémas à faire : 4/19 voir 11/19 si on refait pas
+- architecture diagram for the breakdown of your application into (functional) microservices.   DONE
+- architecture diagram of your application (avant)                                              DONE
+- deployment diagram for your Beep application and the OIDC                                     DONE
+- sequence diagrams of the following actions:
+    - User creates Beep account (vanilla)                                                       REFAIRE
+    - User creates Beep account (via Polytech account)                                          REFAIRE
+    - User creates Beep account (via Google account)                                            REFAIRE
+    - User logs in (vanilla)                                                                    REFAIRE
+    - User logs in (Polytech)                                                                   REFAIRE
+    - User associates their Google account with their Beep account                              REFAIRE
+- sequence diagram of the communication between some of your services to present your approach. DONE
+- sequence diagrams for the application's main actions Authorization                            REFAIRE jcrois
+- Deployment diagram logs & queries                                                             TO DO
+- Sequence diagram of a query to illustrate how your system works.logs & queries                TO DO
+- diagrams Data security, data backup and restore                                               TO DO
+- diagrams Observability, and services supervision integrated to an existing enterprise system  TO DO
+- diagrams Infrastructure high disponibility, continuity plans                                  TO DO
+- Draw up a target diagram Production ready system                                              TO DO
+- UI mockup (sketch) of the different phases of the use case. SEarch                            TO DO
+- Sequence Diagram platform security issues show how system will works                          TO DO
+
+
+POCS : 1/3
+- OIDC Beep                                                                                       TO DO
+- Communication entre services (service mesh)                                                     DONE
+- Platform security issues from outside world microservices secure each other and outside world   TO DO
