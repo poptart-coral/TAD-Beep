@@ -1,13 +1,16 @@
 == 2. Authentication system with OIDC
 === 2.1 State of the Art of Beep Architecture
 
+Here is an architecture diagram of the Beep application in the current state:
 image::../diagrams/png/Diagramme_architecture_Beep.drawio.png[width=1000,align=center]
 // TODO use the latest diagram
 
 === 2.2 Deployment Diagram for Beep Application and OIDC
 
+Here is the deployment diagram of the Beep application with an OIDC authentication system added:
 image::../diagrams/png/Déploiement_OIDC_Beep.drawio.png[width=1000,align=center]
 
 === 2.3 Sequence Diagrams
 
-image::../diagrams/png/Sequence_signin_signuppng.drawio.png[width=1000,align=center]
+Here are the sequence diagrams for the signin and signup actions in the Beep application:
+image::../diagramsv2/png/Sequence_signin_signup2.drawio.png[width=1000,align=center]

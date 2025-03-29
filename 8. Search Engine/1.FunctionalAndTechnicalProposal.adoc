@@ -2,3 +2,26 @@
 === 8.1 Functional and Technical Proposal for the Search Engine
 We want the user to have a full-text indexing engine.
 For example, a user typing the keyword “rabbit” (but this could be a string of words) should have all messages, etc. containing this keyword brought up in a user interface.
+
+==== 8.1.1 Functional Proposal
+The search engine will provide the following functionalities:
+- Full-text indexing: The search engine will index all messages, channels, and users to enable full-text search.
+- Keyword search: Users will be able to search for messages, channels, and users using keywords.
+- Search results: The search engine will return relevant results based on the search query.
+- Ranking: Search results will be ranked based on relevance to the search query.
+- Filtering: Users will be able to filter search results based on various criteria such as date, user, channel, etc.
+- Pagination: Search results will be paginated to improve performance and user experience.
+
+==== 8.1.2 Technical Proposal
+
+The search engine will be implemented using Elasticsearch, a distributed, RESTful search and analytics engine. Elasticsearch provides powerful full-text search capabilities and is highly scalable and performant. The following components will be used to implement the search engine:
+
+- Elasticsearch: The core search engine that indexes and searches data.
+
+- Logstash: A data processing pipeline that ingests data from various sources and sends it to Elasticsearch.
+
+- Kibana: A data visualization tool that provides insights into the data indexed by Elasticsearch.
+
+- Beats: Lightweight data shippers that send data to Elasticsearch.
+
+The search engine will be integrated with the messaging system to index messages, channels, and users. Users will be able to search for messages, channels, and users using keywords and filter search results based on various criteria. The search engine will provide fast and relevant search results to improve user experience.

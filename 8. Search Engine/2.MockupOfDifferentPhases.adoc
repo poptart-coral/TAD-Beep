@@ -1,2 +1,12 @@
 
 === 8.2 UI Mockup of the Different Phases of the Use Case
+
+The following sections provide a detailed UI mockup of the different phases of the use case.
+
+The user is assumed to be logged in and has the necessary permissions to perform the actions described in the use case.
+
+User Interface Mockup for the Search Engine:
+
+He looks for the keyword "rabbit" in the search bar and clicks on the search button. The search engine returns a list of messages, channels, and users containing the keyword "rabbit."
+
+image::../diagramsv2/png/SearchEngine1.drawio.png[width=1000,align=center] 

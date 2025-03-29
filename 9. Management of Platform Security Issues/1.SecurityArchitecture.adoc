@@ -5,3 +5,7 @@ How do you secure communications between microservices?
 Present your security proposal, using sequence diagrams to show how your system will work.
 
 Make a Poc of securing helloworld microservices with each other and with the outside world.
+
+The security is a critical aspect of any system. It ensures that data is protected from unauthorized access, modification, or destruction. To ensure data security, the following measures will be implemented:
+
+- 

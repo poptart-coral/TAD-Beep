@@ -4,8 +4,12 @@ We want to be able to observe the system's behavior in response to a user reques
 
 === 5.1 system and the technical components to be implemented definition  
 
+Thanks to Linkerd service mesh, we will be able to log and monitor the system. We will use the Prometheus and Grafana tools to monitor the system. 
+
 === 5.2 Deployment diagram of the various elements
 
 === 5.3 Sequence diagram of a query to illustrate how the system works
 
 === 5.4 Needs of “security based logs”, to plug the system into a managed SOC
+
+For security reasons, we need to ensure that all logs are encrypted both in transit and at rest. Additionally, access to logs should be restricted to authorized personnel only. Logs should include security-relevant events such as failed login attempts, unauthorized access attempts, and configuration changes. These logs will be forwarded to a managed Security Operations Center (SOC) for real-time analysis and incident response.
