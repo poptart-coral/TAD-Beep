@@ -25,6 +25,7 @@ Before deploying this POC, ensure you have the following:
 1.  **Apply Kubernetes manifests:**
 
     ```bash
+    kubectl create namespace compliments
     kubectl apply -f kube/
     ```
 
@@ -54,15 +55,18 @@ Before deploying this POC, ensure you have the following:
 
     ```bash
     # Annotate namespace for automatic injection (recommended)
-    kubectl annotate namespace default linkerd.io/inject=enabled
+    kubectl annotate ns compliments linkerd.io/inject=enabled
     
     # Restart deployments to apply the mesh to existing pods
-    kubectl rollout restart deployment
+    kubectl rollout restart deploy -n compliments
     ```
 
 4.  **Verify mesh enablement:** Check if your pods are now part of the service mesh:
 
     ```bash
+   linkerd viz stat ns/compliments
+
+   linkerd viz stat deploy -n compliments
     # Check that your pods have the Linkerd proxy
     kubectl get pods -o jsonpath='{.items[*].metadata.name}' | xargs -n1 kubectl get pod -o yaml | grep linkerd.io/proxy-version
     
