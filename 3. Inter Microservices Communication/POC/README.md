@@ -1,147 +1,185 @@
-# Microservices POC – Communication via Linkerd + Ingress
+# Beep Microservices POC with Linkerd and Traefik (with mTLS)
 
-This project demonstrates a **Proof of Concept (POC) for microservices communication on Kubernetes** with the following elements:
+This README guides you through deploying a simple proof-of-concept (POC) web application composed of a Rust frontend (Yew) and backend (Axum) on a Kubernetes cluster powered by **K3s**, **Traefik**, and **Linkerd**, with **mTLS** enabled.
 
-- A **Yew (Rust/WASM) frontend** that displays a compliment of the day
-- An **Axum (Rust) backend** that dynamically generates a compliment
-- **Secure communication via Linkerd** (mTLS, observability)
-- **Modular and dynamic access** thanks to `config.js` injected by `ConfigMap`
-- A **Traefik Ingress** to access the application via a URL on a private or public IP
+## Architecture Overview
+
+- Frontend: Yew (Rust/wasm) served on port 80
+- Backend: Axum (Rust), generates random compliments, on port 3000
+- Service Mesh: Linkerd for secure mTLS communication
+- Ingress: Traefik routes HTTP traffic to services and integrates with Linkerd
 
 ## Prerequisites
 
-Before deploying this POC, ensure you have the following:
+- A Linux machine (VM or server) with an IP address accessible from your local machine
+- No Docker or Rust toolchain needed on the host – all builds are pre-baked into manifests
 
-- **Kubernetes cluster:** A running Kubernetes cluster (e.g., Minikube, Kind, or a cloud-based Kubernetes service).
-- **kubectl:**  The Kubernetes command-line tool (`kubectl`) installed and configured to connect to your cluster.
-- **Linkerd CLI:** The Linkerd command-line interface (`linkerd`) installed.
-- **wasm-pack:**  The `wasm-pack` tool for building the Yew frontend.
-- **Rust toolchain:**  A Rust development environment with `cargo` for building the backend and frontend.
-- **Traefik (optional):** If you intend to use Traefik Ingress, ensure it's installed on your cluster.
-- **Basic understanding of Kubernetes concepts:** Familiarity with Deployments, Services, ConfigMaps, and Ingress.
+## 1. Prepare your VM
 
-## Deployment
+### Install K3s (Lightweight Kubernetes)
+```bash
+curl -sfL https://get.k3s.io | sh -s - --disable=traefik
+```
+> This disables the default Traefik installation from K3s, because we want to install it in another namespace so that the Linkerd annotation we will put is enabled (it is disabled by default in kube-system where Traefik is installed with K3s).
 
-1.  **Apply Kubernetes manifests:**
+### Fix kubeconfig permissions
+```bash
+sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+```
 
-    ```bash
-    kubectl create namespace compliments
-    kubectl apply -f kube/
-    ```
+### Install Helm
+```bash
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+```
 
-2.  **Install Linkerd:** Follow the official Linkerd documentation to install the service mesh on your Kubernetes cluster:
+## 📁 2. Project Setup
 
-    ```bash
-    # Install the CLI
-    curl --proto '=https' --tlsv1.2 -sSfL https://run.linkerd.io/install | sh
-    
-    # Add linkerd to your path
-    export PATH=$PATH:$HOME/.linkerd2/bin
-    
-    # Validate your Kubernetes cluster is ready for Linkerd
-    linkerd check --pre
-    
-    # Install the control plane onto your cluster
-    linkerd install | kubectl apply -f -
-    
-    # Install the viz extension for observability
-    linkerd viz install | kubectl apply -f -
-    
-    # Verify everything worked correctly
-    linkerd check
-    ```
+### Clone or copy the manifests to your VM
+On your local machine:
+```bash
+scp -r POC-communication/ user@<VM-IP>:~
+```
+Then SSH into your VM:
+```bash
+ssh user@<VM-IP>
+cd /home/user/POC-communication/
+```
 
-3.  **Add annotations for Linkerd injection:** You can mesh your services by adding the Linkerd proxy sidecar to each pod :
+### Create required namespaces
+```bash
+kubectl create ns compliments
+kubectl create ns traefik
+```
 
-    ```bash
-    # Annotate namespace for automatic injection (recommended)
-    kubectl annotate ns compliments linkerd.io/inject=enabled
-    
-    # Restart deployments to apply the mesh to existing pods
-    kubectl rollout restart deploy -n compliments
-    ```
+## ☸️ 3. Deploy Traefik (Ingress Controller)
 
-4.  **Verify mesh enablement:** Check if your pods are now part of the service mesh:
+```bash
+helm repo add traefik https://traefik.github.io/charts
+helm repo update
+helm install traefik traefik/traefik -n traefik
+```
 
-    ```bash
-   linkerd viz stat ns/compliments
+### Add Linkerd injection annotation
+```bash
+kubectl annotate ns traefik linkerd.io/inject=ingress
+kubectl rollout restart deployment traefik -n traefik
+```
 
-   linkerd viz stat deploy -n compliments
-    # Check that your pods have the Linkerd proxy
-    kubectl get pods -o jsonpath='{.items[*].metadata.name}' | xargs -n1 kubectl get pod -o yaml | grep linkerd.io/proxy-version
-    
-    # Verify the Linkerd proxy is running in all your pods
-    kubectl get pods -o wide
-    ```
+## 🔐 4. Install Linkerd
 
-5.  **(Optional) Access the application:** If you're using Traefik Ingress, configure your DNS or `/etc/hosts` file to point to the Traefik Ingress IP address. Then, access the application via the configured URL.  If you're using a LoadBalancer service instead, get the external IP and access the application via that IP.
+### Install CLI
+```bash
+curl -sL https://run.linkerd.io/install | sh
+export PATH=$PATH:$HOME/.linkerd2/bin
+linkerd version
+```
 
-## Configuration
+### Check cluster readiness and install Linkerd
+```bash
+linkerd check --pre
+linkerd install --crds | kubectl apply -f -
+linkerd install | kubectl apply -f -
+linkerd check
+```
 
-The `config.js` file is injected via a `ConfigMap` to allow dynamic configuration of the frontend, such as the API URL.  Modify the `kube/configmap.yaml` file to change the API URL.
+### Install observability (viz)
+```bash
+linkerd viz install | kubectl apply -f -
+linkerd viz check
+```
 
-## Verifying Inter-Service Communication Without GUI
+## 🚀 5. Deploy the App (Frontend + API)
 
-You can verify the communication between your microservices using Linkerd's CLI tools without needing the dashboard:
+```bash
+kubectl apply -f kube/api-deployment.yml
+kubectl apply -f kube/api-service.yml
+kubectl apply -f kube/frontend-deployment.yml
+kubectl apply -f kube/frontend-service.yml
+kubectl apply -f kube/frontend-config.yml
+```
 
-1. **Check service dependencies and traffic flow:**
+### Enable Linkerd injection for `compliments` namespace
+```bash
+kubectl annotate ns compliments linkerd.io/inject=enabled
+kubectl rollout restart deploy -n compliments
+```
 
-   ```bash
-   # View live traffic metrics between services
-   linkerd viz stat deployments
-   
-   # Check specific service-to-service communication
-   linkerd viz stat svc/frontend svc/backend
-   
-   # Get detailed traffic metrics for a deployment
-   linkerd viz tap deploy/backend
-   ```
+## 🌍 6. Ingress Routing for the App
 
-2. **Analyze service health and performance:**
+### Update and apply `ingress.yml`
+In `kube/ingress.yml`, replace `162.38.112.221` with your **VM’s IP address**:
 
-   ```bash
-   # Check the overall health of your services
-   linkerd viz check
-   
-   # Get detailed service performance metrics
-   linkerd viz top deploy
-   ```
+```yaml
+host: compliments.<YOUR-IP>.nip.io
+```
 
-3. **Trace requests through your service mesh:**
+Then:
+```bash
+kubectl apply -f kube/ingress.yml
+```
 
-   ```bash
-   # Watch live requests between services
-   linkerd viz tap -n default deploy
-   
-   # Target specific deployment with output limiting
-   linkerd viz tap deploy/frontend --to deploy/backend -o wide
-   ```
+This will:
+- Route `/api` to the backend service
+- Route `/` to the frontend
+- Send mTLS traffic through Linkerd thanks to:
+```yaml
+annotations:
+  ingress.kubernetes.io/custom-request-headers: l5d-dst-override:compliments-api.compliments.svc.cluster.local:3000
+```
 
-4. **Generate test traffic to verify connections:**
+## 🌍 6. Ingress Routing for the Linkerd Dashboard
 
-   ```bash
-   # Use kubectl to send requests through the mesh
-   kubectl exec -it deploy/frontend -- curl -v http://backend:8080/compliment
-   
-   # Simple load testing with multiple requests
-   for i in $(seq 1 10); do kubectl exec -it deploy/frontend -- curl http://backend:8080/compliment; done
-   ```
+### Update and apply 'ingress-linker.yml'
+In `kube/ingress-linker.yml`, replace `162.38.112.221` with your **VM’s IP address**:
 
-5. **Verify mTLS encryption between services:**
+```yaml
+host: linkerd-dashboard.<YOUR-IP>.nip.io
+```
 
-   ```bash
-   # Check which services have mTLS enabled
-   linkerd viz edges deployment
-   
-   # Get detailed mTLS stats
-   linkerd viz edges deployment -o wide
-   ```
+Then:
+```bash
+kubectl apply -f kube/ingress.yml
+```
 
-These commands allow you to thoroughly validate that your services are communicating properly through the Linkerd service mesh without requiring the graphical dashboard.
+To prevent DNS-rebinding attacks, the dashboard rejects any request whose Host header is not localhost, 127.0.0.1 or the service name web.linkerd-viz.svc. So with Traefik, we have to modify it manually with an overlay (web-deployment-patch)
 
-## Notes
+Then:
+```bash
+kubectl patch deployment web -n linkerd-viz --patch-file ./web-deployment-patch.yml
+```
 
-*   This is a basic POC and may need further adjustments for production environments.
-*   Ensure that your Kubernetes cluster has sufficient resources to run the microservices.
-*   For more advanced debugging, you can use the Linkerd dashboard: `linkerd viz dashboard`
-*   The Linkerd service mesh provides automatic mTLS encryption between services without any code changes.
+This will:
+- Route to the linkerd dashboard
+- 
+
+## ✅ 7. Test the Application
+
+### Access from your local browser
+```txt
+http://compliments.<YOUR-IP>.nip.io
+http://linkerd-dashboard.<YOUR-IP>.nip.io/
+```
+> Use [nip.io](https://nip.io) to resolve your public IP as a fake domain automatically
+
+## 🕵️‍♀️ 8. Verify mTLS and Service Mesh
+
+### See if services are meshed
+```bash
+linkerd viz stat ns compliments
+linkerd viz stat deploy -n compliments
+```
+
+### Check mTLS between services
+```bash
+linkerd viz edges deploy -n compliments
+```
+
+### Live request tapping
+```bash
+linkerd viz tap deploy/compliments-api -n compliments
+linkerd viz tap deploy/front -n compliments
+linkerd viz tap deploy/traefik -n traefik
+```
+
+You should see live requests flowing and mTLS secured (`SRC → DST` edges showing `√`).

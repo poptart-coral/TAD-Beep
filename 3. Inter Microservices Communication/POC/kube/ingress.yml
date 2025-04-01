@@ -6,6 +6,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: web
+    ingress.kubernetes.io/custom-request-headers: l5d-dst-override:compliments-api.compliments.svc.cluster.local:3000
+
 spec:
   rules:
     - host: compliments.162.38.112.221.nip.io
