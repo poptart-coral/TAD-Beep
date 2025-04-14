@@ -1,0 +1,20 @@
+== 3. Inter microservices communication
+=== 3.1 Inter-microservice communication orchestration, API systems, protocols used
+
+==== 3.1.1 Web Application Firewall (WAF)
+Before any request reaches our API Gateway, it passes through a **Web Application Firewall (WAF)**. The WAF acts as the first security layer, protecting the system against common web vulnerabilities such as **SQL injections**, **cross-site scripting (XSS)**, and **distributed denial-of-service (DDoS)** attacks. It validates incoming traffic, ensuring it meets predefined security criteria before forwarding legitimate requests to the API Gateway.
+
+==== 3.1.2 API Gateway
+After passing the WAF, every client request reaches the **API Gateway**, which centralizes all incoming requests from clients. The API Gateway is responsible for user **authentication** and **authorization**, ensuring only legitimate requests are permitted. Additionally, it **routes** requests to the corresponding microservices, applies **rate limiting** to protect against abuse, and utilizes **caching** to optimize performance. The API Gateway also logs incoming and outgoing requests, offering valuable insights for **monitoring** and **debugging**, and it provides an additional security layer by preventing direct exposure of microservices.
+
+==== 3.1.3 Communication Protocols and Service Mesh
+Microservices will communicate internally using **RESTful APIs** over **HTTP**, a protocol that is widely adopted, easy to implement, and promotes seamless service integration. Each microservice will expose a well-defined RESTful API for interaction with other services.
+
+**Service discovery** will be handled by **Kubernetes DNS**, enabling dynamic resolution of service names, such as `friends-service.beep.svc.cluster.local`.
+
+To further secure and manage internal service communication, a **Service Mesh** (e.g., Istio) will be implemented. The Service Mesh will automatically secure all **inter-microservice communication** with **Mutual TLS (mTLS)** authentication, ensuring that only trusted and authorized services can interact. Additionally, the Service Mesh will manage aspects like traffic routing, load balancing, observability (logs, metrics, tracing), and resilience through features such as circuit breakers and retries, significantly enhancing the system's reliability and security.
+
+=== 3.2 Sequence diagram
+
+The following sequence diagram demonstrates a typical interaction flow involving the WAF, API Gateway, Keycloak, and several microservices:
+

@@ -1,0 +1,57 @@
+==== Application Topology
+
+The Beep application is structured into three environments: development, staging, and production. Each environment contains the same stack:
+
+- A frontend web application built with React
+- A backend API implemented with AdonisJS
+- A WebRTC service
+
+These services are deployed in separate Kubernetes namespaces:
+- `beep-development`
+- `beep-staging`
+- `beep-production`
+
+They communicate internally via HTTP, and external access is routed through an API gateway.
+
+==== CI/CD Pipeline
+
+The deployment of Beep is automated using GitLab CI pipelines. Each push to the main branches triggers the build, test, and deployment processes.
+
+Deployment into the Kubernetes cluster is managed using ArgoCD, which synchronizes application manifests stored in the Git repository. Each environment is deployed from its corresponding manifest file.
+
+ArgoCD manages only application components (Beep, WebRTC) and related configurations (ConfigMaps and secrets). Core infrastructure components such as PostgreSQL, Redis, and observability tools are deployed separately using Helm charts.
+
+==== Authentication and Authorization
+
+Keycloak is used as the central identity provider. It manages user accounts and authentication flows using the OpenID Connect (OIDC) protocol. Applications redirect users to Keycloak for login and receive identity tokens (ID and access tokens) upon successful authentication.
+
+Kong, acting as the API gateway, does not interact directly with Keycloak but is configured to validate OIDC tokens issued by Keycloak. It uses the public keys published by Keycloak to verify the authenticity and validity of tokens included in client requests.
+
+==== API Gateway
+
+Kong serves as the main API gateway for routing and securing HTTP traffic. It performs:
+
+- Request routing
+- Rate limiting
+- OIDC token validation using Keycloak’s public keys
+- Logging and metrics forwarding
+
+==== Service Mesh
+
+Linkerd is deployed in the cluster. It provides:
+
+- Transparent service-to-service encryption via mTLS
+- Traffic metrics and golden signals per service
+- Failure handling with retries and timeouts
+
+==== Configuration and Secrets
+
+Configuration values are managed via Kubernetes ConfigMaps, which are set per environment. Sensitive data such as API tokens, SMTP credentials, and database passwords are encrypted and stored as Sealed Secrets. Each environment has its own sealed secret manifest. These are encrypted using the cluster’s public key and decrypted at runtime by the Sealed Secrets controller.
+
+==== Observability Overview
+
+Grafana is deployed in the `monitoring` namespace and displays dashboards. Loki receives logs from services, and Tempo is configured to trace API calls. Uptime Kuma, also deployed in the cluster, monitors HTTP endpoints of the application externally.
+
+==== Deployment Diagram
+
+image::../diagrams/png/deployment_diagram.drawio.png[width=1000,align=center] // TODO replace diagram

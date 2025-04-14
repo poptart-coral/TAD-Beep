@@ -1,4 +1,4 @@
-# Beep Microservices POC with Linkerd and Traefik (with mTLS)
+# Microservices POC with Linkerd and Traefik (with mTLS)
 
 This README guides you through deploying a simple proof-of-concept (POC) web application composed of a Rust frontend (Yew) and backend (Axum) on a Kubernetes cluster powered by **K3s**, **Traefik**, and **Linkerd**, with **mTLS** enabled.
 

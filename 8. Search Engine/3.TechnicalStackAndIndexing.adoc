@@ -1,3 +1,0 @@
-=== 8.3 Technical Stack and the Indexing and Search Sequence Diagram
-
-Alreaday mentioned in the previous sections.

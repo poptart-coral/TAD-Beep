@@ -38,3 +38,8 @@ POCS : 1/3
 - OIDC Beep                                                                                       TO DO
 - Communication entre services (service mesh)                                                     DONE
 - Platform security issues from outside world microservices secure each other and outside world   TO DO
+
+= Keycloak Authentication Configuration
+:toc:
+:icons: font
+

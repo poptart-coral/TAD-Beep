@@ -1,19 +1,31 @@
-== 3. Inter microservices communication
-=== 3.1 Inter-microservice communication orchestration, API systems, protocols used
-
 ==== 3.1.1 Web Application Firewall (WAF)
-Before any request reaches our API Gateway, it passes through a **Web Application Firewall (WAF)**. The WAF acts as the first security layer, protecting the system against common web vulnerabilities such as **SQL injections**, **cross-site scripting (XSS)**, and **distributed denial-of-service (DDoS)** attacks. It validates incoming traffic, ensuring it meets predefined security criteria before forwarding legitimate requests to the API Gateway.
+Before any request reaches our API Gateway, it first traverses a Cloudflare **Web Application Firewall (WAF)**. The WAF inspects incoming traffic, blocking malicious or malformed requests and protecting the system against threats like **SQL injections**, **cross-site scripting (XSS)**, and **denial-of-service (DoS)** attacks. Only valid requests passing WAF checks are forwarded to the API Gateway.
 
 ==== 3.1.2 API Gateway
-After passing the WAF, every client request reaches the **API Gateway**, which centralizes all incoming requests from clients. The API Gateway is responsible for user **authentication** and **authorization**, ensuring only legitimate requests are permitted. Additionally, it **routes** requests to the corresponding microservices, applies **rate limiting** to protect against abuse, and utilizes **caching** to optimize performance. The API Gateway also logs incoming and outgoing requests, offering valuable insights for **monitoring** and **debugging**, and it provides an additional security layer by preventing direct exposure of microservices.
+After the WAF, requests arrive at the **API Gateway**, the central entry point for all client traffic. The API Gateway handles:
+
+* **Authentication and authorization** – It verifies client credentials or tokens (obtained from Keycloak) before granting access.
+* **Token forwarding** – Once Keycloak issues an access token, the client includes it in subsequent requests. The API Gateway forwards this token to the target microservice. Each microservice uses Keycloak’s **public keys** to validate the token.
+* **Routing** – It directs requests to the appropriate microservice based on request paths or rules.
+* **Rate limiting** – It prevents abuse by limiting the number of requests a client can make within a specific timeframe.
+* **Monitoring and logging** – All incoming and outgoing requests are logged for future analysis, debugging, and auditing.
+
+By preventing direct access to microservices, the API Gateway adds a layer of security, ensuring microservices remain behind the gateway and are never directly exposed to the public internet.
 
 ==== 3.1.3 Communication Protocols and Service Mesh
-Microservices will communicate internally using **RESTful APIs** over **HTTP**, a protocol that is widely adopted, easy to implement, and promotes seamless service integration. Each microservice will expose a well-defined RESTful API for interaction with other services.
+For inter-service calls, microservices communicate over **HTTP/REST**, making them straightforward to develop and integrate. Each microservice exposes a RESTful API, enabling flexible and decoupled service interactions.
 
-**Service discovery** will be handled by **Kubernetes DNS**, enabling dynamic resolution of service names, such as `friends-service.beep.svc.cluster.local`.
+**Service discovery** is managed via **Kubernetes DNS**, allowing services to be reached through resolvable names like `channel-service.beep.svc.cluster.local`.
 
-To further secure and manage internal service communication, a **Service Mesh** (e.g., Istio) will be implemented. The Service Mesh will automatically secure all **inter-microservice communication** with **Mutual TLS (mTLS)** authentication, ensuring that only trusted and authorized services can interact. Additionally, the Service Mesh will manage aspects like traffic routing, load balancing, observability (logs, metrics, tracing), and resilience through features such as circuit breakers and retries, significantly enhancing the system's reliability and security.
+To secure and observe internal service communication, **Linkerd** is deployed as the **Service Mesh**. Linkerd provides:
 
-=== 3.2 Sequence diagram
+* **mTLS (Mutual TLS)** – Automatically encrypts and authenticates inter-service traffic. When a microservice calls another, Linkerd sidecar proxies transparently handle encryption and certificate validation, ensuring that only trusted services can communicate.
+* **Mesh-enabled Ingress** – Both the ingress controller (Traefik) and the API Gateway (Kong or another) can be “meshed,” meaning all traffic within the cluster is secured by mTLS.
+* **Observability** – By default, Linkerd gathers metrics for success rates, latencies, and request volumes, enhancing visibility.
+* **Resilience** – Features like retries, timeouts, and circuit breaking can be configured to handle communication failures gracefully.
 
-The following sequence diagram demonstrates a typical interaction flow involving the WAF, API Gateway, Keycloak, and several microservices:
+Through Linkerd, each microservice benefits from end-to-end encryption and service-to-service authentication, creating a secure and reliable mesh for internal communication.
+
+=== 3.2 Sequence Diagram
+
+The diagram below illustrates a typical flow where a user makes a request that involves authentication via Keycloak, forwarding of the token by the API Gateway, and an internal microservice call secured by Linkerd’s mTLS.

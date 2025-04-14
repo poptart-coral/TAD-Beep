@@ -1,0 +1,37 @@
+= Technical Architecture Document (TAD)
+Author: Pauline Contat  
+Date: 5 March  
+:toclevels: 3
+
+== Table of Contents
+
+=== Prerequisites & Functional Breakdown
+- xref:1. Prerequisites & Functional Breakdown/1.UserStories.adoc[User Stories]
+- xref:1. Prerequisites & Functional Breakdown/2.FunctionalNeighboorhood.adoc[Functional Neighborhoods]
+- xref:1. Prerequisites & Functional Breakdown/3.MicroServicesArchitectureDiagram.adoc[Microservices Architecture Diagram]
+
+=== Authentication System with OIDC
+- xref:2. Authentication System with OIDC/AuthenticationSystemWithOIDC.adoc[Authentication System with OIDC]
+
+=== Inter Microservices Communication
+- xref:3. Inter Microservices Communication/MicroServicesCommunicatio.adoc[Inter Microservices Communication]
+
+=== Authorization System
+- xref:4. Authorization System/AuthorizationSystem.adoc[Authorization System]
+
+=== Logging and Monitoring
+- xref:5. Logging and Monitoring/LoggingAndMonitoring.adoc[Logging and Monitoring]
+
+=== Production-Ready System
+- xref:6. Production-Ready System/1.ManagementOfDataSecurityBackupRestore.adoc[Management of Data Security, Backup, and Restore]
+- xref:6. Production-Ready System/2.ManagementOfObservalityAndServicesSupervision.adoc[Management of Observability and Services Supervision]
+- xref:6. Production-Ready System/3.ManagementOfInfrastructureHighAvalaibility.adoc[Management of Infrastructure High Availability]
+- xref:6. Production-Ready System/4.TargetDiagram.adoc[Target Diagram]
+
+=== Search Engine
+- xref:8. Search Engine/1.FunctionalAndTechnicalProposal.adoc[Functional and Technical Proposal]
+- xref:8. Search Engine/2.MockupOfDifferentPhases.adoc[Mockup of Different Phases]
+- xref:8. Search Engine/3.TechnicalStackAndIndexing.adoc[Technical Stack and Indexing]
+
+=== Management of Platform Security Issues
+- xref:9. Management of Platform Security Issues/1.SecurityArchitecture.adoc[Security Architecture]

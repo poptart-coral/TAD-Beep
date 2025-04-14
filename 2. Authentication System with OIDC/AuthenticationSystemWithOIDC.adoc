@@ -1,16 +1,60 @@
-== 2. Authentication system with OIDC
-=== 2.1 State of the Art of Beep Architecture
+Our current authentication is handled by Keycloak, and this part is focusing on how we control user onboarding and login flows through "Vanilla", LDAP and Google identity providers. The configuration enforces explicit user actions before allowing access via federated identity sources.
 
-Here is an architecture diagram of the Beep application in the current state:
-image::../diagrams/png/Diagramme_architecture_Beep.drawio.png[width=1000,align=center]
-// TODO use the latest diagram
+==== Goal
 
-=== 2.2 Deployment Diagram for Beep Application and OIDC
+This setup ensures strong control over user identity, avoids unwanted or duplicate accounts, and enforces verification and linking logic that aligns with our security requirements.
 
-Here is the deployment diagram of the Beep application with an OIDC authentication system added:
-image::../diagrams/png/Déploiement_OIDC_Beep.drawio.png[width=1000,align=center]
 
-=== 2.3 Sequence Diagrams
+==== Authentication Flows Summary
 
-Here are the sequence diagrams for the signin and signup actions in the Beep application:
-image::../diagramsv2/png/Sequence_signin_signup2.drawio.png[width=1000,align=center]
+- Local sign-up requires email confirmation before login is allowed.
+- LDAP users must explicitly sign up before login; automatic login on first bind is disabled.
+- Google login requires prior manual account linking; automatic account creation on first login is disabled.
+- All user flows are designed to be intentional, explicit, and secure.
+
+
+
+==== Local User Sign-up
+
+Users are allowed to register using a traditional username and password via Keycloak's built-in registration form. After completing the registration form, Keycloak sends a confirmation email to the user. The account remains inactive until the email is confirmed. Only after the confirmation is the user allowed to log in.
+
+This process ensures that all local users have verified their email addresses before gaining access to the system so that we can be sure that the user is the owner of the email address. This is a critical step in preventing unauthorized access and ensuring that users are legitimate.
+
+image::../diagrams/png/Signup.png[width=1000,align=center] // TODO add the diagram
+
+
+
+==== Polytech LDAP Sign-up and Login
+
+Polytech LDAP is configured as a user federation provider. However, users are **not allowed** to log in with their LDAP credentials unless they have explicitly performed a "Sign up with LDAP" beforehand.
+
+When a user chooses "Sign up with LDAP", they are redirected to Keycloak’s login page, where LDAP is the selected authentication mechanism. Upon successful authentication, Keycloak imports the user into its local storage. This initial import is required to enable subsequent logins.
+
+When a user chooses "Login with LDAP", they are redirected to Keycloak’s login page, where LDAP is the selected authentication mechanism. If a user attempts to log in with LDAP credentials without having signed up, Keycloak denies access since no local user record exists yet.
+
+image::../diagrams/png/LDAP.png[width=1000,align=center] // TODO add the diagram
+
+
+==== Google Login and Account Linking
+
+Google is configured as an external Identity Provider through Keycloak’s identity brokering feature : OpenID Connect provider. However, direct login via Google is **not allowed**.
+
+Users must first log in using their local account and then explicitly associate their Google account through the "Associate my Google account" option. This triggers the standard OAuth2 login flow with Google and, upon success, Keycloak links the external identity to the existing local user.
+
+Once the account is linked, users may subsequently use "Login with Google" to authenticate. If a user attempts to log in with Google without having completed the linking process, Keycloak denies access and does not create a new user automatically.
+
+image::../diagrams/png/Google.png[width=1000,align=center] // TODO add the diagram
+
+
+==== Technical Configuration Notes
+
+- The `Registration Flow` includes an email verification step and must be completed to activate new local users.
+- The `First Broker Login Flow` used for Google has been customized to remove automatic account creation and enforce explicit linking.
+- LDAP user federation is set with:
+  - `Import Users = ON`
+  - `Edit Mode = UNSYNC` because we do not modify the LDAP directory, just read from it, importing users into Keycloak and modifying them there.
+- Google IdP is set with:
+  - `Trust Email = ON`
+  - `Sync Mode = IMPORT`
+  - `Account Linking Only = ON` to ensure that users must link their Google account explicitly in their local account.
+  - `Hide on Login Page = ON` to prevent users from logging in directly with Google.

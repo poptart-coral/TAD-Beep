@@ -1,9 +1,8 @@
-== 8. Search Engine
-=== 8.1 Functional and Technical Proposal for the Search Engine
+=== 4.1 Functional and Technical Proposal for the Search Engine
 We want the user to have a full-text indexing engine.
 For example, a user typing the keyword “rabbit” (but this could be a string of words) should have all messages, etc. containing this keyword brought up in a user interface.
 
-==== 8.1.1 Functional Proposal
+==== 4.1.1 Functional Proposal
 The search engine will provide the following functionalities:
 - Full-text indexing: The search engine will index all messages, channels, and users to enable full-text search.
 - Keyword search: Users will be able to search for messages, channels, and users using keywords.
@@ -12,7 +11,7 @@ The search engine will provide the following functionalities:
 - Filtering: Users will be able to filter search results based on various criteria such as date, user, channel, etc.
 - Pagination: Search results will be paginated to improve performance and user experience.
 
-==== 8.1.2 Technical Proposal
+==== 4.1.2 Technical Proposal
 
 The search engine will be implemented using Elasticsearch, a distributed, RESTful search and analytics engine. Elasticsearch provides powerful full-text search capabilities and is highly scalable and performant. The following components will be used to implement the search engine:
 
@@ -25,3 +24,16 @@ The search engine will be implemented using Elasticsearch, a distributed, RESTfu
 - Beats: Lightweight data shippers that send data to Elasticsearch.
 
 The search engine will be integrated with the messaging system to index messages, channels, and users. Users will be able to search for messages, channels, and users using keywords and filter search results based on various criteria. The search engine will provide fast and relevant search results to improve user experience.
+
+
+=== 4.2 UI Mockup of the Different Phases of the Use Case
+
+The following sections provide a detailed UI mockup of the different phases of the use case.
+
+The user is assumed to be logged in and has the necessary permissions to perform the actions described in the use case.
+
+User Interface Mockup for the Search Engine:
+
+He looks for the keyword "rabbit" in the search bar and clicks on the search button. The search engine returns a list of messages, channels, and users containing the keyword "rabbit."
+
+// image::../diagramsv2/png/SearchEngine1.drawio.png[width=1000,align=center] 
