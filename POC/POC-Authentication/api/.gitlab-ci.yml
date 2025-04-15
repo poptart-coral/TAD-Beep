@@ -1,0 +1,143 @@
+stages:
+  - test
+  - build
+  - tag
+  - deploy
+
+variables:
+  IMAGE_NAME: ${HARBOR_HOST}/${HARBOR_PROJECT}/${CI_PROJECT_NAME}
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+      variables:
+        VERSION: ${CI_COMMIT_SHORT_SHA}-development
+        ENVIRONMENT: development
+    - if: $CI_COMMIT_REF_NAME  == $CI_DEFAULT_BRANCH
+      variables:
+        VERSION: ${CI_COMMIT_SHORT_SHA}-staging
+        ENVIRONMENT: staging
+    - if: '$CI_COMMIT_TAG =~ /^[0-9]+\.[0-9]+\.[0-9]+$/'
+      variables:
+        VERSION: $CI_COMMIT_TAG
+        ENVIRONMENT: production
+    - when: always
+
+lint:
+  tags:
+    - beep-runner
+  stage: test
+  image: node:21.7.3
+  before_script:
+    - corepack enable
+    - pnpm config set store-dir .pnpm-store
+  script:
+    - pnpm install
+    - pnpm typecheck
+    - pnpm lint
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: $CI_COMMIT_REF_NAME  == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+test:
+  stage: test
+  tags:
+    - beep-runner
+  image: node:21.7.3
+  services:
+    - name: postgres
+      alias: postgres
+      variables:
+        POSTGRES_DB: backend-test
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: postgres
+    - name: redis
+      alias: redis
+      variables:
+        REDIS_PASSWORD: password
+  before_script:
+    - corepack enable
+    - pnpm config set store-dir .pnpm-store
+  script:
+    - export $(cat .env.test | xargs)
+    - export REDIS_HOST=$REDIS_PORT_6379_TCP_ADDR
+    - export DB_HOST=$POSTGRES_PORT_5432_TCP_ADDR
+    - export HOST=$HOSTNAME
+    - pnpm install
+    - pnpm test
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: $CI_COMMIT_REF_NAME  == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+
+build:
+  needs: ['test', 'lint']
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:v1.14.0-debug
+    entrypoint: ['']
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"${HARBOR_HOST}\":{\"auth\":\"$(echo -n ${HARBOR_USERNAME}:${HARBOR_PASSWORD} | base64 -w 0)\"}}}" > /kaniko/.docker/config.json
+    - >-
+      /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile $CI_PROJECT_DIR/Dockerfile
+      --destination "$IMAGE_NAME:${VERSION}"
+      --snapshot-mode=redo
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+      when: manual
+
+tag:
+  stage: tag
+  image: docker:24.0.5
+  services:
+    - name: docker:24.0.5-dind
+      alias: docker
+  variables:
+    DOCKER_TLS_CERTDIR: ''
+    STAGING_IMAGE: $IMAGE_NAME:${CI_COMMIT_SHORT_SHA}-staging
+  script:
+    - docker info
+    - echo $HARBOR_PASSWORD | docker login -u $HARBOR_USERNAME --password-stdin $HARBOR_HOST
+    - docker pull $STAGING_IMAGE
+    - docker tag $STAGING_IMAGE $IMAGE_NAME:$VERSION
+    - docker push $IMAGE_NAME:$VERSION
+  rules:
+    - if: $CI_COMMIT_TAG
+deploy:
+  image: alpine/git
+  stage: deploy
+  variables:
+    SSH_PRIVATE_KEY: ./ssh_key
+    KNOWN_HOSTS: ./known_hosts
+    VALUES: ./charts/beep-api/${ENVIRONMENT}.yaml
+    REPO: argeepcd
+  tags:
+    - beep-runner
+  before_script:
+    - cat $BEEP_BOT_SSH_PRIVATE_KEY |base64 -d > $SSH_PRIVATE_KEY
+    - chmod 600 $SSH_PRIVATE_KEY
+    - ssh-keyscan gitlab.polytech.umontpellier.fr > $KNOWN_HOSTS
+    - GIT_SSH_COMMAND="ssh -i $SSH_PRIVATE_KEY -o UserKnownHostsFile=$KNOWN_HOSTS" git clone "git@gitlab.polytech.umontpellier.fr:beep/${REPO}.git"
+    - git config --global user.email "beep@bot.com"
+    - git config --global user.name "beep-bot"
+    - ls $REPO
+    - wget https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 -O yq && chmod +x ./yq
+  script:
+    - cd $REPO
+    - ../yq -i ".image.tag = \"$VERSION\"" $VALUES
+    - git add .
+    - git commit -m "[BUMP] beep-api-${ENVIRONMENT} to $VERSION"
+    - GIT_SSH_COMMAND="ssh -i .$SSH_PRIVATE_KEY -o UserKnownHostsFile=.$KNOWN_HOSTS" git push "git@gitlab.polytech.umontpellier.fr:beep/${REPO}.git"
+  rules:
+    - if: $CI_COMMIT_TAG
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'

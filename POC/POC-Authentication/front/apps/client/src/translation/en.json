@@ -1,0 +1,701 @@
+{
+  "auth": {
+    "page-after-signup": {
+      "check_email": "Check your email",
+      "validate_email": "Your account has been successfully created, validate your email to be able to signin"
+    },
+    "page-confirm-email": {
+      "check_email": "Check your email",
+      "confirm_account": "Confirm your account to signin"
+    },
+    "page-forgot-password": {
+      "forgot_password": "Forgot your password ?",
+      "insert_email": "It's okay, it happens ! Please insert your email below to reset your password.",
+      "send": "Send",
+      "go_back_signin": "Go back to signin page ?",
+      "signin": "Sign in",
+      "email": "Email",
+      "required_email": "Email is required",
+      "invalid_email": "Invalid email address"
+    },
+    "page-reset-password": {
+      "reset": "Reset your password",
+      "new_password": "Please enter your new password below.",
+      "required_password": "Password is required",
+      "invalid_password": "Password must be at least 8 characters long and contain at least one uppercase letter, one digit, and one special character",
+      "password": "Password",
+      "confirm_password": "You must confirm your password",
+      "password_mismatch": "Your passwords do not match",
+      "confirm": "Confirm password",
+      "submit": "Submit",
+      "go_back_signin": "Go back to signin page?",
+      "signin": "Sign in"
+    },
+    "page-signin": {
+      "signin": "Sign in",
+      "required_email": "Email is required",
+      "email": "Email",
+      "required_password": "Password is required",
+      "password": "Password",
+      "password_error": "The password you entered is wrong",
+      "forgot_password": "You forgot your password ?",
+      "no_account": "Don't have an account ?",
+      "signup": "Sign up",
+      "qrcode": "Se connecter avec votre téléphone",
+      "error": "Invalid email or password",
+      "success": "Successfully logged in"
+    },
+    "page-signup": {
+      "welcome_back": "We are happy to see you !",
+      "required_firstname": "First name is required",
+      "invalid_firstname": "First name should only contain letters of the alphabet (uppercase or lowercase)",
+      "firstname": "First name",
+      "required_lastname": "Last name is required",
+      "invalid_lastname": "Last name should only contain letters of the alphabet (uppercase or lowercase)",
+      "lastname": "Last name",
+      "required_username": "Username is required",
+      "invalid_username": "Username should only contain lowercase letters of the alphabet",
+      "username": "Username",
+      "required_email": "Email is required",
+      "invalid_email": "Invalid email address",
+      "email": "Email",
+      "required_password": "Password is required",
+      "invalid_password": "Password must be at least 8 characters long and contain at least one uppercase letter, one digit, and one special character",
+      "password": "Password",
+      "required_confirm_password": "You must confirm your password",
+      "password_missmatch": "Your passwords do not match",
+      "confirm_password": "Confirm password",
+      "profile_picture": "Profile picture",
+      "signup": "Sign up",
+      "already_account": "Already have an account ?",
+      "signin": "Sign in"
+    },
+    "page-totp": {
+      "verify-identity": "Verify your identity",
+      "application-otp": "Open your authenticator application and enter the code below or use a recovery code",
+      "button": "Send",
+      "error": "An error occurred while trying to verify your identity",
+      "error-totp-invalid": "Invalid code",
+      "error-enter-6-digits": "Please enter a 6-digit code"
+    },
+    "page-verify": {
+      "account_verification": "Account verification",
+      "loading": "Loading...",
+      "verified_account": "Your account has been verified",
+      "invalid-token": "Invalid token",
+      "signin": "Time to signin !"
+    },
+    "page-verify-qrcode": {
+      "error": "Error validating QRCode",
+      "expiration": "This QRCode has expired",
+      "homepage": "Go to the homepage",
+      "success": "You have successfully connected to your account",
+      "description": "Go back on your main page, you should be authenticated."
+    }
+  },
+  "discover": {
+    "discover-server-page": {
+      "title": "Find your community on Beep",
+      "description": "From studying to music, there's a place for you.",
+      "search_placeholder": "Find a server..."
+    }
+  },
+  "channels": {
+    "context-menu": {
+      "move-to-folder": "Move to folder",
+      "ungroup": "Ungroup",
+      "delete-channel": "Delete channel"
+    },
+    "delete-message-modal": {
+      "title": "Delete Message",
+      "description": "Are you sure you want to delete this message?",
+      "cancel": "Cancel",
+      "delete": "Delete"
+    },
+    "display-pinned": {
+      "pinned_messages": "Pinned messages"
+    },
+    "empty-pinned-messages": {
+      "no_pinned_messages": "No pinned messages"
+    },
+    "empty-server-page": {
+      "title": "NO TEXT CHANNELS",
+      "description": "You can create as many channel as want. Click on create channel on the left pane !"
+    },
+    "media-embed": {
+      "youtube": "YouTube video player",
+      "spotify": "Spotify player",
+      "apple_music": "AppleMusic player",
+      "instagram": "Instagram Embed",
+      "tiktok": "TikTok Embed"
+    },
+    "message": {
+      "today": "Today"
+    },
+    "page-channel": {
+      "reply_to": "Reply to",
+      "message_placeholder": "Type a message",
+      "cannot_see_channel": "You are not allowed to see this channel",
+      "no_permission_sending_message": "You don't have permission to send messages",
+      "user_selector": {
+        "title": "User",
+        "empty_result": "Any user."
+      },
+      "channel_selector": {
+        "title": "Text channels",
+        "empty_result": "Any text channel."
+      },
+      "error": {
+        "delete_message": "Failure while trying to delete the message",
+        "empty_message": "A message is required"
+      }
+    },
+    "page-invitation": {
+      "error": "Error joining the server. Please try again.",
+      "success": "Successfully joined the server!",
+      "loading": "Loading..."
+    },
+    "tag": {
+      "undefined": "undefined tag"
+    },
+    "user-information": {
+      "title": "User informations",
+      "user_picture_alt": "{{username}}'s profile picture"
+    }
+  },
+  "layout": {
+    "add-server": {
+      "add-server-modal": {
+        "add_server": "Add a server",
+        "server_description": "A server is where you can hang out with your friends",
+        "create_server": "Create a server",
+        "or": "or",
+        "join_server": "Join a server"
+      },
+      "create-server-modal": {
+        "build_server": "Build your {{visibility}} server",
+        "server_title": "Let's give your server some juice ! Keep in mind that you can edit your server later.",
+        "add_picture": "Add a picture",
+        "required_name": "Please enter a name.",
+        "server_name": "Server name",
+        "required_description": "Please describe in a few words your server",
+        "server_description": "Tell us more about your server...",
+        "cancel": "Cancel",
+        "create": "Create"
+      },
+      "join-server-modal": {
+        "join_server": "Join your public server",
+        "enter_server_id": "Let's join a public server. You juste need to enter the server ID.",
+        "enter_server": "Please enter a server ID.",
+        "cancel": "Cancel",
+        "join": "Join"
+      },
+      "select-visibility-modal": {
+        "additional_details": "Tell us a little more about what you want",
+        "create_server": "Create a {{visibility}} server",
+        "private": "private",
+        "public": "public",
+        "for_you_and_friends": "For you and your friends",
+        "or": "or",
+        "build_your_community": "To build your community"
+      },
+      "success_create_server": "Server created successfully",
+      "error_name_already_exists": "A server with this name already exists",
+      "error_create_server": "An error occurred while creating the server",
+      "success_join_server": "Server joined successfully",
+      "error_join_server": "An error occurred while joining the server"
+    },
+    "server-settings-modal": {
+      "delete-server-modal": {
+        "destroy_server": "Destroy your server",
+        "delete_careful": "Be careful you’re about to delete your server !",
+        "irreversible_action_warning": "You won’t be able to recover your messages/files after this action.",
+        "type": "Type ",
+        "confirm_delete": " to confirm the deletion.",
+        "server_name": "Your server's name",
+        "cancel": "Cancel",
+        "destroy": "Destroy"
+      }
+    },
+    "channels-navigation": {
+      "create_channel": "Create channel",
+      "success_create_channel": "Channel created !",
+      "error_create_channel": "An error occured while creating the channel !",
+      "copy_server_id": "Server ID copied to clipboard",
+      "cannot_see_channel": "You are not allowed to see channels"
+    },
+    "create-channel-modal": {
+      "create_channel": "Create channel",
+      "choose_name": "Choose a name for your channel",
+      "channel_input_placeholder": "Channel name",
+      "required_name": "Please enter a name.",
+      "text": "Text",
+      "voice": "Voice",
+      "folder": "Folder",
+      "cancel": "Cancel",
+      "create": "Create"
+    },
+    "current-user": {
+      "account": "Account",
+      "profile": "Profile",
+      "voice_video": "Voice & Video",
+      "security": "Security",
+      "online": "Online",
+      "offline": "Offline",
+      "language": "Language"
+    },
+    "delete-channel": {
+      "delete_channel": "Delete channel",
+      "delete_careful": "Be careful you’re about to delete your channel !",
+      "irreversible_action_warning": "You won’t be able to recover your messages after this action.",
+      "type": "Type ",
+      "confirm_delete": " to confirm the deletion.",
+      "channel_name": "Name of the channel",
+      "delete": "Delete",
+      "success_delete_channel": "Channel deleted successfully",
+      "error_channel_name_mismatch": "Confirmation text does not match",
+      "error_delete_channel": "An error occured while deleting the channel"
+    },
+    "destroy-server": {
+      "default_server_name": "Your server name",
+      "no_server_selected": "No server selected",
+      "success_delete_server": "Server deleted successfully",
+      "error_server_name_mismatch": "Confirmation text does not match",
+      "error_delete_server": "An error occured while deleting the server"
+    },
+    "display-channel": {
+      "channel": "Channel",
+      "overview": "Overview",
+      "delete": "Delete"
+    },
+    "generate-code-private-invitation": {
+      "generate_code": "Generate invitation link",
+      "passed_date": "The date has already passed.",
+      "unique_code": "Unique invite code",
+      "select_option": "Select an option",
+      "1hour": "1 hour",
+      "1day": "1 day",
+      "1week": "1 week",
+      "custom": "Custom",
+      "pick_date": "Pick a date"
+    },
+    "generated-code-private-invitation": {
+      "generate_new_code": "Create a new code!"
+    },
+    "invite-member-modal": {
+      "invite_friend": "Invite your friends",
+      "share_code": "Share this code id to invite your friends to this private server",
+      "share_server": "Share this server id to invite your friends to this public server",
+      "invite_code_generated": "Code generated successfully",
+      "code_copied": "{{text}} copied to clipboard"
+    },
+    "members-navigation": {
+      "members": "Members"
+    },
+    "security-settings": {
+      "tfa-n-activated": {
+        "subtitle": "2FA AUTHENTICATION",
+        "description": "Activate the two factor authentication to add an extra layer of security to your Beep account.",
+        "learn-more": "Learn more here.",
+        "cta": "Enable Authenticator App",
+        "error": "Wrong TOTP code"
+      },
+      "tfa-activated": {
+        "description": "Activate the two factor authentication to add an extra layer of security to your Beep account. Since you did it you're quite safe ! GG ;)",
+        "cta": "Remove Authenticator App"
+      },
+      "ask-password": {
+        "title": "Enter your password",
+        "subtitle": "Please enter your password to enable 2FA",
+        "error": "Password required."
+      },
+      "link-authenticator": {
+        "title": "Link your Authenticator App",
+        "subtitle": "Make your account safer in two steps :",
+        "scan": "SCAN THE QR CODE",
+        "scan-description": "Open the authentication app and scan the QRCode.",
+        "2fa": "2FA KEY (MANUAL ENTRY)",
+        "2fa-description": "Enter the 6-digit verification code generated."
+      }
+    },
+    "overview-settings-channel": {
+      "overview": "Overview",
+      "required_name_channel": "Channel name is required",
+      "invalid_name_channel": "Channel name must not start with empty spaces",
+      "channel_name": "Channel name",
+      "description": "Description",
+      "channel_description": "Channel description",
+      "save": "Save",
+      "reset": "Reset",
+      "success_update_channel": "Channel updated !",
+      "error_update_channel": "An error occured while updating the channel !"
+    },
+    "overview-settings-server": {
+      "server_overview": "SERVER OVERVIEW",
+      "upload_picture": "Upload profile picture",
+      "upload_banner": "Upload banner",
+      "server_name": "Server name",
+      "server_description": "Server description",
+      "save": "SAVE",
+      "success_update_server": "Server updated !",
+      "error_update_server": "An error occured while updating the server !"
+    },
+    "role-settings-server": {
+      "roles": "Roles",
+      "no_roles": "Any roles found",
+      "create_role": "Create a role"
+    },
+    "roles-settings-server-feature": {
+      "no_role_found": "Role not found, please try again",
+      "role_created": "Role created",
+      "role_error_creating": "Error creating role",
+      "role_updated": "Role updated",
+      "role_error_updating": "Error updating role",
+      "role_deleted": "Role deleted",
+      "role_error_deleting": "Error deleting role"
+    },
+    "server-dropdown-menu": {
+      "server": "Server",
+      "overview": "Overview",
+      "settings": "Settings"
+    },
+    "role-server": {
+      "update": "Update",
+      "delete": "Delete"
+    },
+    "role-form": {
+      "create_title": "Create a role",
+      "update_title": "Update a role",
+      "choose_role_name": "Choose a role name",
+      "role_name_is_required": "The role name is required",
+      "role_name": "Role name",
+      "create": "Create",
+      "update": "Update",
+      "cancel": "Cancel"
+    },
+    "server-dropdown": {
+      "settings": "Settings",
+      "destroy": "Destroy server",
+      "server": "Server",
+      "overview": "Overview",
+      "roles": "Roles"
+    },
+    "servers-navigation": {
+      "logout": "Successfully logged out !"
+    },
+    "user-media": {
+      "change_method": "Make changes to your method of communication",
+      "audio_outputs": "Audio outputs",
+      "audio_inputs": "Audio inputs",
+      "video_inputs": "Video inputs",
+      "no_audio_outputs": "No audio output device found",
+      "no_audio_inputs": "No audio input device found",
+      "no_video_inputs": "No video input device found",
+      "permission_to_use": "Ask for input device permission",
+      "access_blocked": "Permission denied. Access to video and audio input devices is blocked."
+    },
+    "webhooks-settings-server": {
+      "webhooks": "WEBHOOKS",
+      "new_webhook": "New webhook"
+    },
+    "new-webhook-modal": {
+      "success_create": "Webhook created successfully!",
+      "error_create": "Failed to create the webhook.",
+      "error_name_exists": "A webhook with this name already exists.",
+      "create_modal": {
+        "title": "Create a New Webhook",
+        "subtitle": "Fill in the details below to create your webhook.",
+        "name_label": "Webhook Name",
+        "name_placeholder": "Enter the webhook name",
+        "name_required": "Webhook name is required.",
+        "channel_label": "Channel",
+        "channel_required": "Please select a channel.",
+        "cancel": "Cancel",
+        "create": "Create"
+      }
+    },
+    "webhook-list": {
+      "no_webhooks": "No webhooks found.",
+      "loading": "Loading webhooks...",
+      "error": "Error"
+    },
+    "webhook-item": {
+      "upload_picture": "Upload picture",
+      "name_required": "Name is required",
+      "name_label": "Webhook Name",
+      "channel_label": "Channel",
+      "copy_webhook": "Copy Webhook URL",
+      "delete_webhook": "Delete Webhook",
+      "error_delete": "Failed to delete webhook",
+      "save": "Save",
+      "error_missing_webhook": "Webhook not found",
+      "success_update": "Webhook updated successfully",
+      "error_update": "Failed to update webhook",
+      "webhook_missing": "Webhook not found",
+      "success_delete": "Webhook deleted successfully",
+      "copy_success": "Webhook URL copied to clipboard",
+      "copy_error": "Failed to copy webhook URL",
+      "token_missing": "Webhook token not found"
+    }
+  },
+  "settings": {
+    "components": {
+      "hover-modify-picture": {
+        "modify": "Modify"
+      },
+      "modify-email-dialog": {
+        "title": "Choose a new email",
+        "modify": "Modify",
+        "content_1": "We need to verify your old email address",
+        "content_2": "in order to change it",
+        "content_3": "Have you lost access to your email? Contact your email provider to regain access",
+        "action_content_button": "Send verification code"
+      },
+      "modify-profile-picture-dialog": {
+        "choose_picture": "Choose a new picture",
+        "select_picture": "Select a new profile picture",
+        "confirm": "Confirm"
+      },
+      "modify-username-dialog": {
+        "title": "Choose a new username",
+        "modify": "Modify",
+        "required_username": "Enter a new username",
+        "invalid_username": " Username should only contain lowercase letters of the alphabet",
+        "username": "Username",
+        "confirm": "Confirm"
+      },
+      "modify-lastname-dialog": {
+        "title": "Choose a new Last name",
+        "modify": "Modify",
+        "content_required": "Last name is required",
+        "content_message": "Last name should contain only letters, and allow one hyphen, space, or apostrophe between two parts of the name",
+        "render_label": "Lastname",
+        "confirm": "Confirm"
+      },
+      "modify-firstname-dialog": {
+        "title": "Choose a new First name",
+        "modify": "Modify",
+        "content_required": "First name is required",
+        "content_message": "Last name should contain only letters, and allow one hyphen, space, or apostrophe between two parts of the name",
+        "render_label": "First name",
+        "confirm": "Confirm"
+      },
+      "modify-username-email": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "username": "Username",
+        "email": "Email"
+      },
+      "validate-otp-dialog": {
+        "title": "Enter Code",
+        "modify": "Modify",
+        "content": "Check your email: we've sent you a verification code. Enter it here to verify your identity",
+        "otp_rules_required": "Otp code is required",
+        "otp_rules_message": "OTP code must be exactly 6 digits",
+        "field_label": "OTP Code",
+        "resend_message": "Didn't receive a code or it expired?",
+        "resend_button": "Resend",
+        "action_button": "Confirm"
+      },
+      "validate-email-dialog": {
+        "title": "Choose a new email",
+        "modify": "Modify",
+        "enter_password": "Enter your current password",
+        "enter_password_label": "Current Password",
+        "enter_email": "Email is required",
+        "enter_email_error": "Invalid email address",
+        "enter_email_label": "Email",
+        "action_button": "Confirm"
+      },
+      "modify-password-setting": {
+        "title": "Update Password",
+        "modify": "Modify Password",
+        "current_password_rule": "Enter your current password",
+        "current_password_label": "Current Password",
+        "new_password_rule": "Password is required",
+        "new_password_message": "Password must be at least 8 characters long and contain at least one uppercase letter, one digit, and one special character",
+        "new_password_label": "New Password",
+        "verify_password_rule": "Verify your new password",
+        "verify_password_validate": "Passwords do not match",
+        "verify_password_label": "Verify New Password",
+        "action_button": "Confirm"
+      }
+    },
+    "modify-profile-card": {
+      "picture_not_filled": "Choose a picture by clicking on the button first",
+      "error_message_username_already_exist": "This username already exists",
+      "error_message_email_already_exist": "This email already exists",
+      "error_profile_update": "An error occurred while updating",
+      "success_update_profile": "Updated succesfully !",
+      "success_email_send": "Email sent successfully! Please check your inbox.",
+      "error_email_send": "Failed to send email. Please try again.",
+      "success_otp_code": "Valid code !",
+      "error_otp_code": "An error occured. Please try again.",
+      "error_password_email_update": "The current password is wrong"
+    },
+    "change-language": {
+      "language": "Language"
+    },
+    "modify-password-feature": {
+      "title": "Password & Authentification",
+      "success": "Update successful !",
+      "error-mismatch": "The current password is wrong",
+      "error": "Something whent wrong, please try again"
+    }
+  },
+  "friends": {
+    "header-page-friend": {
+      "friend": "Friends",
+      "invitation": "Invitations"
+    },
+    "delete-friend-menu": {
+      "delete": "Remove"
+    },
+    "delete-friend-dialog": {
+      "title": "Remove",
+      "description": "Are you sure you want to delete this friend?",
+      "cancel": "Cancel",
+      "delete": "Remove"
+    },
+    "empty-friends-list": {
+      "title": "No friends yet",
+      "description": "You don't have any friends yet. Add some friends to start chatting!"
+    },
+    "delete-friend-dialog-feature": {
+      "success": "Friend removed successfully",
+      "error": "An error occurred while removing the friend"
+    },
+    "empty-invitation-list": {
+      "title": "No invitations yet",
+      "description": "You don't have any invitations yet. Send some invitations to start connecting!"
+    },
+    "add-friend-input": {
+      "success": "Invitation sent !",
+      "placeholder": "Enter a username to add a friend",
+      "user-not-found": "User not found",
+      "error": "An error occurred while sending the invitation",
+      "username-required": "Username is required"
+    },
+    "private-channels-navigation": {
+      "private_conversations": "Private conversations"
+    }
+  },
+  "notifications": {
+    "friend-request": {
+      "request": " sent you a friend request !"
+    },
+    "friend-message": {
+      "message": " sent you a message !"
+    },
+    "mentions": {
+      "mentioned": "mentioned you !"
+    }
+  },
+  "globals": {
+    "activated": "activated",
+    "not-activated": "not activated"
+  },
+  "permissions": {
+    "ADMINISTRATOR": {
+      "name": "Administrator",
+      "description": "The administrator role allows you to manage the server from A to Z"
+    },
+    "MANAGE_SERVER": {
+      "name": "Manage server",
+      "description": "Allows you to create, modify and delete the server"
+    },
+    "MANAGE_ROLES": {
+      "name": "Manage roles",
+      "description": "Allows you to manage roles allows you to create, modify and delete roles"
+    },
+    "CREATE_INVITATION": {
+      "name": "Create invitations",
+      "description": "Allows you to create invitations allows you to create invitations for the server"
+    },
+    "MANAGE_CHANNELS": {
+      "name": "Manage channels",
+      "description": "Allows you to create, modify and delete discussion channels"
+    },
+    "MANAGE_WEBHOOKS": {
+      "name": "Manage webhooks",
+      "description": "Allows you to create, modify and delete webhooks"
+    },
+    "VIEW_CHANNELS": {
+      "name": "View discussion channels",
+      "description": "Allows you to see the discussion channels"
+    },
+    "SEND_MESSAGES": {
+      "name": "Send messages",
+      "description": "Allows you to send messages in the discussion channels"
+    },
+    "MANAGE_NICKNAMES": {
+      "name": "Manage nicknames",
+      "description": "Allows you to manage the nicknames of the server members"
+    },
+    "CHANGE_NICKNAME": {
+      "name": "Change nickname",
+      "description": "Allows you to change your nickname on the server"
+    },
+    "MANAGE_MESSAGES": {
+      "name": "Manage messages",
+      "description": "Allows you to delete messages from other server members"
+    },
+    "ATTACH_FILES": {
+      "name": "Send attachments",
+      "description": "Allows you to send attachments in the discussion channels"
+    }
+  },
+  "role-settings": {
+    "roles-settings-provider": {
+      "new-role": "New Role",
+      "edit-role": "Edit Role",
+      "delete-role": "Delete Role",
+      "role-name": "Role Name",
+      "role-description": "Role Description",
+      "create-role": "Create Role",
+      "update-role": "Update Role",
+      "cancel": "Cancel",
+      "save": "Save",
+      "success-create-role": "Role created successfully",
+      "error-create-role": "An error occurred while creating the role",
+      "success-update-role": "Role updated successfully",
+      "error-update-role": "An error occurred while updating the role",
+      "success-delete-role": "Role deleted successfully",
+      "error-delete-role": "An error occurred while deleting the role"
+    },
+    "assign-members": "Assign members",
+    "role-edition-page": {
+      "members": "Members",
+      "permissions": "Permissions"
+    },
+    "permission-edition": {
+      "pending-modification": "Pending modification"
+    },
+    "unassign-member-dialog": {
+      "title": "Unassign Member",
+      "description": "Are you sure you want to unassign this member from the role?"
+    },
+    "delete-role-dialog": {
+      "title": "Delete Role",
+      "description": "Are you sure you want to delete this role? This action cannot be undone."
+    }
+  },
+  "cancel": "Cancel",
+  "add": "Add",
+  "remove": "Remove",
+  "delete": "Delete",
+  "component": {
+    "user-popover": {
+      "success-ask-friend": "Friend request sent successfully",
+      "failed-ask-friend": "Friend request failed",
+      "add-friend": "Add friend",
+      "private-conv": "Private message",
+      "invitation-sent": "Invitation sent"
+    }
+  },
+  "shared": {
+    "input-select": {
+      "no_options": "No result for this search"
+    }
+  }
+}

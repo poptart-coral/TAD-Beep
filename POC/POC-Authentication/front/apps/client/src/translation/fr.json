@@ -1,0 +1,702 @@
+{
+  "globals": {
+    "activated": "activé",
+    "not-activated": "non activé"
+  },
+  "auth": {
+    "page-after-signup": {
+      "check_email": "Vérifiez vos emails",
+      "validate_email": "Votre compte a été créé avec succès, validez votre email pour pouvoir vous connecter"
+    },
+    "page-confirm-email": {
+      "check_email": "Vérifiez vos emails",
+      "confirm_account": "Confirmez votre compte pour vous connecter"
+    },
+    "page-forgot-password": {
+      "forgot_password": "Mot de passe oublié ?",
+      "insert_email": "C'est ok, ça arrive ! Veuillez insérer votre email ci-dessous pour réinitialiser votre mot de passe.",
+      "send": "Envoyer",
+      "go_back_signin": "Revenir à la page de connexion ?",
+      "signin": "Se connecter",
+      "email": "Email",
+      "required_email": "L'e-mail est requis",
+      "invalid_email": "Adresse e-mail invalide"
+    },
+    "page-reset-password": {
+      "reset": "Réinitialisez votre mot de passe",
+      "new_password": "Veuillez entrer votre nouveau mot de passe ci-dessous.",
+      "required_password": "Le mot de passe est requis",
+      "invalid_password": "Le mot de passe doit comporter au moins 8 caractères et contenir au moins une lettre majuscule, un chiffre et un caractère spécial.",
+      "password": "Mot de passe",
+      "confirm_password": "Vous devez confirmer votre mot de passe",
+      "password_mismatch": "Vos mots de passe ne correspondent pas",
+      "confirm": "Confirmez le mot de passe",
+      "submit": "Envoyer",
+      "go_back_signin": "Revenir à la page de connexion ?",
+      "signin": "Se connecter"
+    },
+    "page-signin": {
+      "signin": "Se connecter",
+      "required_email": "L'e-mail est requis",
+      "password_error": "Le mot de passe que vous avez saisi est incorrect",
+      "invalid_email": "Adresse e-mail invalide",
+      "email": "Email",
+      "required_password": "Le mot de passe est requis",
+      "password": "Mot de passe",
+      "forgot_password": "Vous avez oublié votre mot de passe ?",
+      "no_account": "Vous n'avez pas de compte ?",
+      "signup": "S'inscrire",
+      "qrcode": "Se connecter avec votre téléphone",
+      "error": "Email/password incorrect",
+      "success": "Connexion réussie"
+    },
+    "page-signup": {
+      "welcome_back": "Nous sommes heureux de vous voir !!",
+      "required_firstname": "Le prénom est obligatoire",
+      "invalid_firstname": "Le prénom ne doit contenir que des lettres de l'alphabet (majuscules ou minuscules)",
+      "firstname": "Prénom",
+      "required_lastname": "Le nom de famille est obligatoire",
+      "invalid_lastname": "Le nom de famille ne doit contenir que des lettres de l'alphabet (majuscules ou minuscules).",
+      "lastname": "Nom de famille",
+      "required_username": "Le nom d'utilisateur est obligatoire",
+      "invalid_username": "Le nom d'utilisateur ne doit contenir que des lettres minuscules de l'alphabet",
+      "username": "Nom d'utilisateur",
+      "required_email": "L'e-mail est requis",
+      "invalid_email": "Adresse e-mail invalide",
+      "email": "Email",
+      "required_password": "Le mot de passe est requis",
+      "invalid_password": "Le mot de passe doit comporter au moins 8 caractères et contenir au moins une lettre majuscule, un chiffre et un caractère spécial.",
+      "password": "Mot de passe",
+      "required_confirm_password": "Vous devez confirmer votre mot de passe",
+      "password_missmatch": "Votre mot de passe ne corresponde pas",
+      "confirm_password": "Confirmez le mot de passe",
+      "profile_picture": "Photo de profil",
+      "signup": "S'inscrire",
+      "already_account": "Vous avez déjà un compte ?",
+      "signin": "Se connecter"
+    },
+    "page-totp": {
+      "verify-identity": "Vérifiez votre identité",
+      "application-otp": "Ouvrez votre application OTP et entrez le code ci-dessous ou utiliser un code de secours",
+      "button": "Envoyer",
+      "error": "Une erreur est survenue lors de la vérification du code",
+      "error-totp-invalid": "Code incorrect",
+      "error-enter-6-digits": "Veuillez entrer un code à 6 chiffres"
+    },
+    "page-verify": {
+      "account_verification": "Vérification du compte",
+      "loading": "Chargement...",
+      "verified_account": "Votre compte a été vérifié",
+      "invalid-token": "Jeton invalide",
+      "signin": "Il est temps de vous connecter !"
+    },
+    "page-verify-qrcode": {
+      "error": "Erreur en validant le QRCode",
+      "expiration": "Le QRCode a expiré",
+      "homepage": "Retour à la page d'accueil",
+      "success": "Connexion réussie",
+      "description": "Vous pouvez retourner sur votre navigateur pour continuer à utiliser Beep"
+    }
+  },
+  "discover": {
+    "discover-server-page": {
+      "title": "Retrouvez votre communauté sur Beep",
+      "description": "Des études jusqu'à la musique, il y a une place pour vous.",
+      "search_placeholder": "Cherchez un serveur..."
+    }
+  },
+  "channels": {
+    "context-menu": {
+      "move-to-folder": "Déplacer",
+      "ungroup": "Dissocier",
+      "delete-channel": "Supprimer"
+    },
+    "delete-message-modal": {
+      "title": "Supprimer un message",
+      "description": "Êtes-vous sûr de vouloir supprimer ce message ?",
+      "cancel": "Annuler",
+      "delete": "Supprimer"
+    },
+    "display-pinned": {
+      "pinned_messages": "Messages épinglés"
+    },
+    "empty-pinned-messages": {
+      "no_pinned_messages": "Aucun message épinglé"
+    },
+    "empty-server-page": {
+      "title": "AUCUN SALON DE DISCUSSION TEXTUEL",
+      "description": "Vous pouvez créer au tant de salon de discussion textuel que vous le souhaitez. Cliquez sur le bouton de création dans la section de gauche !"
+    },
+    "media-embed": {
+      "youtube": "Lecteur vidéo YouTube",
+      "spotify": "Lecteur audio Spotify",
+      "apple_music": "Lecteur audio AppleMusic",
+      "instagram": "Composant Instagram",
+      "tiktok": "Composant TikTok"
+    },
+    "message": {
+      "today": "Aujourd'hui"
+    },
+    "page-channel": {
+      "reply_to": "Répondre à",
+      "message_placeholder": "Saisissez un message",
+      "cannot_see_channel": "Vous n'êtes pas autorisé à voir les salons de discussion",
+      "no_permission_sending_message": "Vous n'avez pas la permission d'envoyer un message",
+      "user_selector": {
+        "title": "Utilisateur",
+        "empty_result": "Aucun utilisateur."
+      },
+      "channel_selector": {
+        "title": "Salon de discussion textuel",
+        "empty_result": "Aucun salon de discussion textuel."
+      },
+      "error": {
+        "delete_message": "Une erreur est survenue lors de la suppression du message",
+        "empty_message": "Un message est requis"
+      }
+    },
+    "page-invitation": {
+      "error": "Une erreur est survenue lors de l'intégration au serveur. Veuillez réessayer.",
+      "success": "Vous avez bien été intégré au serveur !",
+      "loading": "Chargement..."
+    },
+    "tag": {
+      "undefined": "tag indéfinit"
+    },
+    "user-information": {
+      "title": "Informations de l'utilisateur",
+      "user_picture_alt": "Photo de profil de {{username}}"
+    }
+  },
+  "layout": {
+    "security-settings": {
+      "tfa-n-activated": {
+        "subtitle": "AUTHENTIFICATION 2FA",
+        "description": "Activez l'authentification à deux facteurs pour ajouter une couche de sécurité supplémentaire à votre compte Beep.",
+        "learn-more": "En savoir plus ici.",
+        "cta": "Activer l'application Authenticator",
+        "error": "Code TOTP erroné"
+      },
+      "ask-password": {
+        "title": "Entrez votre mot de passe",
+        "subtitle": "Veuillez saisir votre mot de passe pour activer 2FA",
+        "error": "Mot de passe requis."
+      },
+      "link-authenticator": {
+        "title": "Associez votre application Authenticator",
+        "subtitle": "Sécurisez votre compte en deux étapes :",
+        "scan": "SCANNEZ LE CODE QR",
+        "scan-description": "Ouvrez l'application d'authentification et scannez le QRCode.Ouvrez l'application d'authentification et scannez le QRCode.",
+        "2fa": "CLÉ 2FA (ENTRÉE MANUELLE)",
+        "2fa-description": "Saisissez le code de vérification à 6 chiffres généré."
+      },
+      "tfa-activated": {
+        "description": "Activez l'authentification à deux facteurs pour ajouter une couche de sécurité supplémentaire à votre compte Beep. Puisque vous l'avez fait, vous êtes en sécurité ! GG ;)",
+        "cta": "Supprimer l'application Authenticator"
+      }
+    },
+    "add-server": {
+      "add-server-modal": {
+        "add_server": "Ajouter un serveur",
+        "server_description": "Un serveur est l'endroit où vous pouvez passer du temps avec vos amis",
+        "create_server": "Créer un serveur",
+        "or": "ou",
+        "join_server": "Rejoindre un serveur"
+      },
+      "create-server-modal": {
+        "build_server": "Créez votre serveur {{visibility}}",
+        "server_title": "Donnez du style à votre serveur ! Gardez en tête que vous pourrez le modifier plus tard.",
+        "add_picture": "Ajouter une image",
+        "required_name": "Veuillez entrer un nom.",
+        "server_name": "Nom du serveur",
+        "required_description": "Veuillez décrire votre serveur en quelques mots",
+        "server_description": "Parlez-nous de votre serveur...",
+        "cancel": "Annuler",
+        "create": "Créer"
+      },
+      "join-server-modal": {
+        "join_server": "Rejoindre votre serveur public",
+        "enter_server_id": "Rejoignons un serveur public. Il vous suffit d'entrer l'ID du serveur.",
+        "enter_server": "Veuillez entrer un ID de serveur.",
+        "cancel": "Annuler",
+        "join": "Rejoindre"
+      },
+      "select-visibility-modal": {
+        "additional_details": "Dites-nous un peu plus sur ce que vous voulez",
+        "create_server": "Créer un serveur {{visibility}}",
+        "private": "privé",
+        "public": "public",
+        "for_you_and_friends": "Pour vous et vos amis",
+        "or": "ou",
+        "build_your_community": "Pour construire votre communauté"
+      },
+      "success_create_server": "Le serveur a été créé avec succès",
+      "error_name_already_exists": "Un serveur avec ce nom existe déjà",
+      "error_create_server": "Une erreur est survenue lors de la création du serveur",
+      "success_join_server": "Le serveur a été rejoint avec succès",
+      "error_join_server": "Une erreur est survenue lors de la connexion au serveur"
+    },
+    "server-settings-modal": {
+      "delete-server-modal": {
+        "destroy_server": "Détruisez votre serveur",
+        "delete_careful": "Attention, vous êtes sur le point de supprimer votre serveur !",
+        "irreversible_action_warning": "Vous ne pourrez pas récupérer vos messages/fichiers après cette action.",
+        "type": "Saisissez ",
+        "confirm_delete": " pour confirmer la suppression.",
+        "server_name": "Nom du serveur",
+        "cancel": "Annuler",
+        "destroy": "Détruire"
+      }
+    },
+    "channels-navigation": {
+      "create_channel": "Créer un salon de discussion",
+      "success_create_channel": "Salon de discussion créé !",
+      "error_create_channel": "Une erreur est survenue lors de la création du salon de discussion !",
+      "copy_server_id": "Identifiant du serveur copié dans le press papier",
+      "cannot_see_channel": "Vous n'êtes pas autorisé à voir les salons de discussion"
+    },
+    "create-channel-modal": {
+      "create_channel": "Créer un salon de discussion",
+      "folder": "Dossier",
+      "choose_name": "Choisissez un nom pour votre salon de discussion",
+      "channel_input_placeholder": "Nom du salon de discussion",
+      "required_name": "Veuillez entrer un nom.",
+      "text": "Texte",
+      "voice": "Voix",
+      "cancel": "Annuler",
+      "create": "Créer"
+    },
+    "current-user": {
+      "account": "Compte",
+      "profile": "Profil",
+      "voice_video": "Voix & Vidéo",
+      "security": "Sécurité",
+      "online": "Connecté",
+      "offline": "Déconnecté",
+      "language": "Langue"
+    },
+    "delete-channel": {
+      "delete_channel": "Supprimer le salon de discussion",
+      "delete_careful": "Attention, vous êtes sur le point de supprimer votre salon de discussion !",
+      "irreversible_action_warning": "Vous ne pourrez pas récupérer vos messages après cette action.",
+      "type": "Saisissez ",
+      "confirm_delete": " pour confirmer la suppression.",
+      "channel_name": "Nom du salon de discussion",
+      "delete": "Supprimer",
+      "success_delete_channel": "Le salon de discussion a été supprimé avec succès",
+      "error_channel_name_mismatch": "Le texte de confirmation ne correspond pas au nom du salon de discussion",
+      "error_delete_channel": "Une erreur est survenue lors de la suppression du salon de discussion"
+    },
+    "destroy-server": {
+      "default_server_name": "Votre nom de serveur",
+      "no_server_selected": "Aucun serveur sélectionné",
+      "success_delete_server": "Serveur supprimé avec succès",
+      "error_server_name_mismatch": "Le texte de confirmation ne correspond pas au nom du serveur",
+      "error_delete_server": "Une erreur est survenue lors de la suppression du serveur"
+    },
+    "display-channel": {
+      "channel": "Salon de discussion",
+      "overview": "Aperçu",
+      "delete": "Supprimer"
+    },
+    "generate-code-private-invitation": {
+      "generate_code": "Générer un lien d'invitation",
+      "passed_date": "La date est déjà passée.",
+      "unique_code": "Code d'invitation unique",
+      "select_option": "Sélectionnez une option",
+      "1hour": "1 heure",
+      "1day": "1 jour",
+      "1week": "1 semaine",
+      "custom": "Personnalisé",
+      "pick_date": "Choisir une date"
+    },
+    "generated-code-private-invitation": {
+      "generate_new_code": "Générer un nouveau code !"
+    },
+    "invite-member-modal": {
+      "invite_friend": "Invitez vos amis",
+      "share_code": "Partagez ce code pour inviter vos amis sur ce serveur privé",
+      "share_server": "Partagez cet ID de serveur pour inviter vos amis sur ce serveur public",
+      "invite_code_generated": "Lien généré avec succès",
+      "code_copied": "{{text}} copié dans le press papier"
+    },
+    "members-navigation": {
+      "members": "Membres"
+    },
+    "overview-settings-channel": {
+      "overview": "Aperçu",
+      "required_name_channel": "Le nom du salon de discussion est requis",
+      "invalid_name_channel": "Le nom du salon de discussion ne doit pas commencer par des espaces vides",
+      "channel_name": "Nom du salon de discussion",
+      "description": "Description",
+      "channel_description": "Description du salon de discussion",
+      "save": "Sauvegarder",
+      "reset": "Réinitialiser",
+      "success_update_channel": "Salon de discussion mis à jour !",
+      "error_update_channel": "Une erreur est survenue lors de la mise à jour du salon de discussion"
+    },
+    "overview-settings-server": {
+      "server_overview": "APERÇU DU SERVEUR",
+      "upload_picture": "Télécharger la photo de profil",
+      "upload_banner": "Télécharger la bannière",
+      "server_name": "Nom du serveur",
+      "server_description": "Description du serveur",
+      "save": "SAUVEGARDER",
+      "success_update_server": "Serveur mis à jour !",
+      "error_update_server": "Une erreur est survenue lors de la mise à jour du serveur"
+    },
+    "roles-settings-server-feature": {
+      "no_role_found": "Aucun rôle trouvé, veuillez réessayer",
+      "role_created": "Rôle créé avec succès",
+      "role_error_creating": "Une erreur est survenue lors de la création du rôle",
+      "role_updated": "Rôle mis à jour avec succès",
+      "role_error_updating": "Une erreur est survenue lors de la mise à jour du rôle",
+      "role_deleted": "Rôle supprimé avec succès",
+      "role_error_deleting": "Une erreur est survenue lors de la suppression du rôle"
+    },
+    "role-settings-server": {
+      "roles": "Rôles",
+      "no_roles": "Aucun rôle trouvé",
+      "create_role": "Créer un rôle"
+    },
+    "role-server": {
+      "update": "Modifier",
+      "delete": "Supprimer"
+    },
+    "role-form": {
+      "create_title": "Créer un rôle",
+      "update_title": "Modifier un rôle",
+      "choose_role_name": "Choisissez un nom pour le rôle",
+      "role_name_is_required": "Le nom du rôle est requis",
+      "role_name": "Nom du rôle",
+      "create": "Créer",
+      "update": "Modifier",
+      "cancel": "Annuler"
+    },
+    "server-dropdown-menu": {
+      "server": "Serveur",
+      "overview": "Aperçu",
+      "settings": "Paramètres"
+    },
+    "server-dropdown": {
+      "settings": "Paramètres",
+      "destroy": "Supprimer le serveur",
+      "server": "Serveur",
+      "overview": "Aperçu",
+      "roles": "Rôles"
+    },
+    "servers-navigation": {
+      "logout": "Déconnexion réussie"
+    },
+    "user-media": {
+      "change_method": "Modifiez votre méthode de communication",
+      "audio_outputs": "Sorties audio",
+      "audio_inputs": "Entrées audio",
+      "video_inputs": "Entrées vidéo",
+      "no_audio_outputs": "Aucune sortie audio trouvée",
+      "no_audio_inputs": "Aucune entrée audio trouvée",
+      "no_video_inputs": "Aucune entrée vidéo trouvée",
+      "permission_to_use": "Demander l'autorisation d'utiliser les médias",
+      "access_blocked": "Permission d'accès aux médias bloquée"
+    },
+    "webhooks-settings-server": {
+      "webhooks": "Webhooks",
+      "new_webhook": "Nouveau webhook"
+    },
+    "new-webhook-modal": {
+      "success_create": "Le webhook a bien été créé!",
+      "error_create": "Erreur dans la création du webhook.",
+      "error_name_exists": "Un webhook avec ce nom à déjà été créé.",
+      "create_modal": {
+        "title": "Créer un nouveau Webhook",
+        "subtitle": "Remplir les détails suivant pour créer votre webhook.",
+        "name_label": "Nom du Webhook",
+        "name_placeholder": "Entrer le nom du webhook",
+        "name_required": "Le nom du webhook est requis.",
+        "channel_label": "Salon de discussion",
+        "channel_required": "Sélectionner le salon de discussion.",
+        "cancel": "Annuler",
+        "create": "Créer"
+      }
+    },
+    "webhook-list": {
+      "no_webhooks": "Aucun webhook trouvé.",
+      "loading": "Chargement des webhooks...",
+      "error": "Erreur"
+    },
+    "webhook-item": {
+      "upload_picture": "Télécharger la photo de profil",
+      "name_required": "Le nom du webhook est requis.",
+      "name_label": "Nom du Webhook",
+      "channel_label": "Salon de discussion",
+      "copy_webhook": "Copier l'URL du webhook ",
+      "delete_webhook": "Supprimer le webhook",
+      "error_delete": "Erreur dans la suppression du webhook.",
+      "save": "Sauvegarder",
+      "error_missing_webhook": "Webhook manquant.",
+      "success_update": "Webhook mis à jour.",
+      "error_update": "Erreur dans la mise à jour du webhook.",
+      "webhook_missing": "Webhook manquant.",
+      "success_delete": "Webhook supprimé.",
+      "copy_success": "URL du webhook copiée.",
+      "copy_error": "Erreur dans la copie de l'URL du webhook.",
+      "token_missing": "Token manquant"
+    }
+  },
+  "settings": {
+    "components": {
+      "hover-modify-picture": {
+        "modify": "Modifier"
+      },
+      "modify-email-dialog": {
+        "title": "Choisissez un nouvel e-mail",
+        "modify": "Modifier",
+        "content_1": "Nous devons vérifier votre ancienne adresse e-mail",
+        "content_2": "afin de la changer",
+        "content_3": "Avez-vous perdu l'accès à votre e-mail ? Contactez votre fournisseur d'e-mails pour récupérer l'accès",
+        "action_content_button": "Envoyer le code de vérification"
+      },
+      "modify-profile-picture-dialog": {
+        "choose_picture": "Choisissez une nouvelle image",
+        "select_picture": "Sélectionnez une nouvelle photo de profil",
+        "confirm": "Confirmer"
+      },
+      "modify-username-dialog": {
+        "title": "Choisissez un nouveau nom d'utilisateur",
+        "modify": "Modifier",
+        "required_username": "Entrez un nouveau nom d'utilisateur",
+        "invalid_username": "Le nom d'utilisateur ne doit contenir que des lettres minuscules de l'alphabet",
+        "username": "Nom d'utilisateur",
+        "confirm": "Confirmer"
+      },
+      "modify-lastname-dialog": {
+        "title": "Choisissez un nouveau nom de famille",
+        "modify": "Modifier",
+        "content_required": "Le nom de famille est requis",
+        "content_message": "Le nom de famille ne doit contenir que des lettres, et autoriser un seul tiret, espace ou apostrophe entre deux parties du nom",
+        "render_label": "Nom de famille",
+        "confirm": "Confirmer"
+      },
+      "modify-firstname-dialog": {
+        "title": "Choisissez un nouveau prénom",
+        "modify": "Modifier",
+        "content_required": "Le prénom est requis",
+        "content_message": "Le prénom ne doit contenir que des lettres, et autoriser un seul tiret, espace ou apostrophe entre deux parties du prénom",
+        "render_label": "Prénom",
+        "confirm": "Confirmer"
+      },
+      "modify-username-email": {
+        "firstName": "Prénom",
+        "lastName": "Nom de famille",
+        "username": "Nom d'utilisateur",
+        "email": "E-mail"
+      },
+      "validate-otp-dialog": {
+        "title": "Entrez le code",
+        "modify": "Modifier",
+        "content": "Vérifiez votre e-mail : nous vous avons envoyé un code de vérification. Saisissez-le ici pour vérifier votre identité",
+        "otp_rules_required": "Le code OTP est requis",
+        "otp_rules_message": "Le code OTP doit comporter exactement 6 chiffres",
+        "field_label": "Code OTP",
+        "resend_message": "Vous n'avez pas reçu de code ou il a expiré ?",
+        "resend_button": "Renvoyer",
+        "action_button": "Confirmer"
+      },
+      "validate-email-dialog": {
+        "title": "Choisissez un nouvel email",
+        "modify": "Modifier",
+        "enter_password": "Entrez votre mot de passe actuel",
+        "enter_password_label": "Mot de passe actuel",
+        "enter_email": "L'email est requis",
+        "enter_email_error": "Adresse email invalide",
+        "enter_email_label": "Email",
+        "action_button": "Confirmer"
+      },
+      "modify-password-setting": {
+        "title": "Mettre à jour le mot de passe",
+        "modify": "Modifier le mot de passe",
+        "current_password_rule": "Saisissez votre mot de passe actuel",
+        "current_password_label": "Mot de passe actuel",
+        "new_password_rule": "Le mot de passe est requis",
+        "new_password_message": "Le mot de passe doit comporter au moins 8 caractères, inclure au moins une lettre majuscule, un chiffre et un caractère spécial",
+        "new_password_label": "Nouveau mot de passe",
+        "verify_password_rule": "Vérifiez votre nouveau mot de passe",
+        "verify_password_validate": "Les mots de passe ne correspondent pas",
+        "verify_password_label": "Vérifiez le nouveau mot de passe",
+        "action_button": "Confirmer"
+      }
+    },
+    "modify-profile-card": {
+      "picture_not_filled": "Choisissez une image en cliquant d'abord sur le bouton",
+      "error_message_username_already_exist": "Ce nom d'utilisateur existe déjà",
+      "error_message_email_already_exist": "Cet email existe déjà",
+      "error_profile_update": "Une erreur s'est produite lors de la mise à jour",
+      "success_update_profile": "Mise à jour réussie !",
+      "success_email_send": "Email envoyé avec succès ! Veuillez vérifier votre boîte de réception.",
+      "error_email_send": "Échec de l'envoi de l'email. Veuillez réessayer.",
+      "success_otp_code": "Code valide !",
+      "error_otp_code": "Une erreur s'est produite. Veuillez réessayer.",
+      "error_password_email_update": "Le mot de passe actuel est incorrect"
+    },
+    "change-language": {
+      "language": "Langue"
+    },
+    "modify-password-feature": {
+      "title": "Mot de passe et authentification",
+      "success": "Mise à jour réussie !",
+      "error-mismatch": "Le mot de passe actuel est incorrect",
+      "error": "Une erreur s'est produite, veuillez réessayer"
+    }
+  },
+  "friends": {
+    "header-page-friend": {
+      "friend": "Amis",
+      "invitation": "Invitations"
+    },
+    "delete-friend-menu": {
+      "delete": "Supprimer"
+    },
+    "delete-friend-dialog": {
+      "title": "Supprimer",
+      "description": "Êtes-vous sûr de vouloir supprimer cet ami ?",
+      "cancel": "Annuler",
+      "delete": "Supprimer"
+    },
+    "empty-friends-list": {
+      "title": "Aucun ami",
+      "description": "Vous n'avez pas encore d'amis. Pourquoi ne pas en ajouter un ?"
+    },
+    "delete-friend-dialog-feature": {
+      "success": "Ami supprimé",
+      "error": "Une erreur est survenue lors de la suppression de l'ami"
+    },
+    "empty-invitation-list": {
+      "title": "Aucune invitation",
+      "description": "Vous n'avez pas encore d'invitations. Envoyez des invitations pour commencer à vous connecter !"
+    },
+    "add-friend-input": {
+      "success": "Invitation envoyée !",
+      "placeholder": "Entrez un nom d'utilisateur pour ajouter un ami",
+      "user-not-found": "Utilisateur non trouvé",
+      "error": "Une erreur est survenue lors de l'envoi de l'invitation",
+      "username-required": "Le nom d'utilisateur est requis"
+    },
+    "private-channels-navigation": {
+      "private_conversations": "Conversations privées"
+    }
+  },
+  "notifications": {
+    "friend-request": {
+      "request": " vous a demandé en ami !"
+    },
+    "friend-message": {
+      "message": " vous a envoyé un message !"
+    },
+    "mentions": {
+      "mentioned": "vous a mentionné !"
+    }
+  },
+  "permissions": {
+    "ADMINISTRATOR": {
+      "name": "Administrateur",
+      "description": "Le rôle d'administrateur vous permet de gérer le serveur de A à Z"
+    },
+    "MANAGE_SERVER": {
+      "name": "Gérer le serveur",
+      "description": "Vous permet de créer, modifier et supprimer le serveur"
+    },
+    "MANAGE_ROLES": {
+      "name": "Gérer les rôles",
+      "description": "Vous permet de gérer les rôles, de créer, modifier et supprimer des rôles"
+    },
+    "CREATE_INVITATION": {
+      "name": "Créer des invitations",
+      "description": "Vous permet de créer des invitations pour le serveur"
+    },
+    "MANAGE_CHANNELS": {
+      "name": "Gérer les salons",
+      "description": "Vous permet de créer, modifier et supprimer des salons de discussion"
+    },
+    "MANAGE_WEBHOOKS": {
+      "name": "Gérer les webhooks",
+      "description": "Vous permet de créer, modifier et supprimer des webhooks"
+    },
+    "VIEW_CHANNELS": {
+      "name": "Voir les salons de discussion",
+      "description": "Vous permet de voir les salons de discussion"
+    },
+    "SEND_MESSAGES": {
+      "name": "Envoyer des messages",
+      "description": "Vous permet d'envoyer des messages dans les salons de discussion"
+    },
+    "MANAGE_NICKNAMES": {
+      "name": "Gérer les pseudonymes",
+      "description": "Vous permet de gérer les pseudonymes des membres du serveur"
+    },
+    "CHANGE_NICKNAME": {
+      "name": "Changer de pseudonyme",
+      "description": "Vous permet de changer votre pseudonyme sur le serveur"
+    },
+    "MANAGE_MESSAGES": {
+      "name": "Gérer les messages",
+      "description": "Vous permet de supprimer les messages des autres membres du serveur"
+    },
+    "ATTACH_FILES": {
+      "name": "Envoyer des pièces jointes",
+      "description": "Vous permet d'envoyer des pièces jointes dans les salons de discussion"
+    }
+  },
+  "role-settings": {
+    "assign-members": "Assigner des membres",
+    "roles-settings-provider": {
+      "new-role": "Nouveau rôle",
+      "edit-role": "Modifier le rôle",
+      "delete-role": "Supprimer le rôle",
+      "role-name": "Nom du rôle",
+      "role-description": "Description du rôle",
+      "create-role": "Créer un rôle",
+      "update-role": "Mettre à jour le rôle",
+      "cancel": "Annuler",
+      "save": "Sauvegarder",
+      "success-create-role": "Rôle créé avec succès",
+      "error-create-role": "Une erreur est survenue lors de la création du rôle",
+      "success-update-role": "Rôle mis à jour avec succès",
+      "error-update-role": "Une erreur est survenue lors de la mise à jour du rôle",
+      "success-delete-role": "Rôle supprimé avec succès",
+      "error-delete-role": "Une erreur est survenue lors de la suppression du rôle"
+    },
+    "role-edition-page": {
+      "members": "Membres",
+      "permissions": "Permissions"
+    },
+    "permission-edition": {
+      "pending-modification": "Modification en attente"
+    },
+    "unassign-member-dialog": {
+      "title": "Désassigner un membre",
+      "description": "Êtes-vous sûr de vouloir supprimer ce membre du rôle ?"
+    },
+    "delete-role-dialog": {
+      "title": "Supprimer le rôle",
+      "description": "Êtes-vous sûr de vouloir supprimer ce rôle ? Cette action est irréversible."
+    }
+  },
+  "cancel": "Annuler",
+  "add": "Ajouter",
+  "remove": "Supprimer",
+  "delete": "Supprimer",
+  "components": {
+    "user-popover": {
+      "success-ask-friend": "Demande d'ami envoyée avec succès",
+      "failed-ask-friend": "La demande d'ami a échoué",
+      "add-friend": "Ajouter en ami",
+      "private-conv": "Message privé",
+      "invitation-sent": "Invitation envoyée"
+    }
+  },
+  "shared": {
+    "input-select": {
+      "no_options": "Aucun résultat pour cette recherche"
+    }
+  }
+}
