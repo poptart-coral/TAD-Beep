@@ -1,79 +1,49 @@
-import { AppDispatch } from '@beep/store'
-import { LoadingScreen } from '@beep/ui'
-import { getUserState, userActions, useRefreshMutation } from '@beep/user'
-import { useEffect, useState } from 'react'
-import { Toaster } from 'react-hot-toast'
-import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, Outlet, useLocation, useNavigate } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import { NotificationsHandler } from '@beep/notifications'
+import { LoadingScreen } from '@beep/ui';
+import { Toaster } from 'react-hot-toast';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { NotificationsHandler } from '@beep/notifications';
+import { useAuth } from 'react-oidc-context';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { userActions, getUserState } from '@beep/user';
 
 export default function App() {
-  const { t } = useTranslation()
-  const { isLoading, isAuthenticated, payload } = useSelector(getUserState)
-  const dispatch = useDispatch<AppDispatch>()
-  useState<NodeJS.Timeout>()
-  const location = useLocation()
-  const navigate = useNavigate()
-  const [
-    refresh,
-    { data: refreshData, isError: isErrorRefresh, isSuccess: isSuccessRefresh },
-  ] = useRefreshMutation()
+  const auth = useAuth();
+  const dispatch = useDispatch();
+  const location = useLocation();
+  const userState = useSelector(getUserState);
 
   useEffect(() => {
-    refresh()
-    dispatch(userActions.updateIsLoading(false))
-    setInterval(() => {
-      refresh()
-    }, 60 * 1000 * 12)
-  }, [refresh, dispatch])
-
-  useEffect(() => {
-    if (isErrorRefresh) {
-      navigate('/authentication/signin')
-      return
-    }
-    if (isSuccessRefresh && refreshData) {
+    if (!auth.isLoading && auth.isAuthenticated && auth.user) {
       dispatch(
         userActions.setTokens({
-          accessToken: refreshData.accessToken,
-          refreshToken: refreshData.refreshToken,
+          accessToken: auth.user.access_token || null,
+          refreshToken: auth.user.refresh_token || null,
         })
-      )
+      );
     }
-  }, [dispatch, isErrorRefresh, isSuccessRefresh, navigate, refreshData])
+  }, [auth.isLoading, auth.isAuthenticated, auth.user, dispatch]);
 
-  if (
-    !isLoading &&
-    !isAuthenticated &&
-    !location.pathname.includes('authentication')
-  ) {
-    return (
-      <Navigate
-        to="/authentication/signin"
-        replace
-        state={{ from: location }}
-      />
-    )
+  useEffect(() => {
+    if (!auth.isLoading && !auth.isAuthenticated) {
+      auth.signinRedirect();
+    }
+  }, [auth.isLoading, auth.isAuthenticated, auth.signinRedirect]);
+
+  if (auth.isLoading) {
+    return <LoadingScreen />;
   }
 
-  if (isLoading && !location.pathname.includes('authentication')) {
-    return <LoadingScreen />
-  }
-
-  if (
-    payload &&
-    !payload.audited_account &&
-    !location.pathname.includes('authentication')
-  ) {
-    return <Navigate to={'/authentication/confirmation'} replace />
+  if (auth.isAuthenticated && auth.user && auth.user.profile && !auth.user.profile.email_verified && !location.pathname.includes('authentication')) {
+    return <Navigate to="/authentication/confirmation" replace />;
   }
 
   return (
     <>
       <Toaster />
       <Outlet />
-      <NotificationsHandler userInfo = {payload} />
     </>
-  )
+          /*<NotificationsHandler userInfo = {payload} />*/
+
+  );
 }

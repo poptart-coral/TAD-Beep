@@ -9,6 +9,8 @@ import i18n from './i18n'
 import { RouterProvider } from 'react-router'
 import { router } from './app/router.main'
 import { Toaster } from 'sonner'
+import { AuthProvider } from 'react-oidc-context'
+import oidcConfig from './oidcConfig'
 
 const container =
   document.getElementById('root') || document.createElement('div')
@@ -18,15 +20,17 @@ const store = setupStore()
 
 root.render(
   <StrictMode>
-    <Provider store={store}>
-      <I18nextProvider i18n={i18n}>
-        <TooltipProvider>
-          <Toaster />
-          <ModalProvider>
-            <RouterProvider router={router} />
-          </ModalProvider>
-        </TooltipProvider>
-      </I18nextProvider>
-    </Provider>
+    <AuthProvider {...oidcConfig}>
+      <Provider store={store}>
+        <I18nextProvider i18n={i18n}>
+          <TooltipProvider>
+            <Toaster />
+            <ModalProvider>
+              <RouterProvider router={router} />
+            </ModalProvider>
+          </TooltipProvider>
+        </I18nextProvider>
+      </Provider>
+    </AuthProvider>
   </StrictMode>
 )

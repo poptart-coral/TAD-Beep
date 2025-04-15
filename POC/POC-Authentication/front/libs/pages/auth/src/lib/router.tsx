@@ -10,6 +10,7 @@ import PageVerifyFeature from './feature/page-verify-feature'
 import { PageQRCodeVerifyFeature } from './feature/page-verify-qrcode-feature'
 import PageAuthBackground from './ui/page-auth-background'
 import PageTotpFeature from './feature/page-totp-feature'
+import PageRedirectSignin from './feature/page-redirect-signin'
 
 export const autenticationRouter: RouteObject[] = [
   {
@@ -22,11 +23,11 @@ export const autenticationRouter: RouteObject[] = [
       },
       {
         path: 'signin',
-        Component: PageSigninFeature,
+        Component: PageRedirectSignin,
       },
       {
         path: 'signup',
-        Component: PageSignupFeature,
+        Component: PageRedirectSignin,
       },
       {
         path: 'confirmation',
