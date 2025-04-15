@@ -16,11 +16,7 @@ The TAD provides a comprehensive plan for breaking down the Beep web app into fu
 
 === Key Sections
 
-- Introduction
-- Prerequisites and functional breakdown
-- Authentication and Identity Management
-- Microservices Communication
-- Authorization system
-- Logging and Monitoring
-- Production-Ready System
-- Conclusion
+- Introduction, User Stories, and Functional Neighborhood
+- Infrastructure, Architecture, and Deployment Overview
+- Security
+- Search Engine

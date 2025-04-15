@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: front-config
+  namespace: compliments
+data:
+  config.js: |
+    window.API_URL = "/api";

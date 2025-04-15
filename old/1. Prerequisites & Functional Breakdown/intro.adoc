@@ -1,0 +1,7 @@
+This Technical Architecture Document (TAD) provides a comprehensive overview of **Beep**, a web application designed to provide real-time communication, similar to Discord. It outlines the **infrastructure**, **architecture**, and **deployment** of the application, as well as **security architecture**, **data architecture**, and the **search engine** implementation.
+
+The document is structured into several sections, each dedicated to a specific component of the system, allowing a clear understanding of how the application works. The primary goal of this document is to serve as the foundation for transitioning Beep from a monolithic architecture to a microservices-based system.
+
+This document is intended for **developers**, **architects**, and **stakeholders** involved in the Beep project. As the project evolves and new features are introduced, this document will be updated to reflect changes in the system architecture, ensuring a detailed and current view of the Beep platform's evolution.
+
+Through this document, the intention is to ensure that the necessary design and architectural decisions are in place for Beep's **microservice** transformation, offering insights into its security, scalability, and overall system structure.

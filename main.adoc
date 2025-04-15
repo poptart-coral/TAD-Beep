@@ -1,6 +1,5 @@
-= Technical Architecture Document (TAD)
+= Beep Technical Architecture Document (TAD)
 Author: Pauline Contat  
-Date: 5 March  
 :toc:
 :toclevels: 2
 
@@ -8,44 +7,44 @@ Date: 5 March
 
 === 1.1 Introduction
 
-include::1. Prerequisites & Functional Breakdown/intro.adoc[]
+include::files/Intro.adoc[]
 
 === 1.2 Beep User Stories
 
-include::1. Prerequisites & Functional Breakdown/1.UserStories.adoc[]
+include::files/UserStories.adoc[]
 
 === 1.3 Functional Neighborhood
-include::1. Prerequisites & Functional Breakdown/2.FunctionalNeighboorhood.adoc[]
+include::files/FunctionalNeighboorhood.adoc[]
 
 == 2. Infrastructure, Architecture and Deployment Overview
 
 === 2.1 Infrastructure
-include::1. Prerequisites & Functional Breakdown/infra.adoc[]
+include::files/Infra.adoc[]
 
 === 2.2 High-Level Architecture
-include::1. Prerequisites & Functional Breakdown/Archi.adoc[]
+include::files/Archi.adoc[]
 
 === 2.3 Deployment Overview
-include::1. Prerequisites & Functional Breakdown/Deploy.adoc[]
+include::files/Deploy.adoc[]
 
 == 3. Security
 
 === 3.1 Authentication
-include::2. Authentication System with OIDC/AuthenticationSystemWithOIDC.adoc[]
+include::files/Authent.adoc[]
 
 === 3.2 Authorization
-include::4. Authorization System/AuthorizationSystem.adoc[]
+include::files/Authori.adoc[]
 
 
 === 3.2 WAF, API Gateway, and Microservices Communication
-include::3. Inter Microservices Communication/MicroServicesCommunicatio.adoc[]
+include::files/WAFApiGWMicrosCom.adoc[]
 
 === 3.3 Logging & Monitoring
-include::5. Logging and Monitoring/LoggingAndMonitoring.adoc[]
+include::files/LoggingMonitor.adoc[]
 
 === 3.4 Data Security & High Availability
-include::6. Production-Ready System/1.ManagementOfDataSecurityBackupRestore.adoc[]
+include::files/DataSecHA.adoc[]
 
 == 4. Search Engine
 
-include::8. Search Engine/1.FunctionalAndTechnicalProposal.adoc[]
+include::files/SearchEngine.adoc[]

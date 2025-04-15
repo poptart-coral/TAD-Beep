@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: compliments-api
+  namespace: compliments
+  labels:
+    app: compliments-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: compliments-api
+  template:
+    metadata:
+      labels:
+        app: compliments-api
+    spec:
+      containers:
+        - name: compliments-api
+          image: popopolette/compliments-api:latest
+          ports:
+            - containerPort: 3000

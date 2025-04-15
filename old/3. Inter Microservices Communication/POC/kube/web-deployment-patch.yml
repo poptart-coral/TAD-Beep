@@ -1,0 +1,35 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: web
+#   namespace: linkerd-viz
+# spec:
+#   template:
+#     spec:
+#       containers:
+#         - name: web
+#           args:
+#             - -namespace=linkerd
+#             - -log-level=info
+#             - -enforced-host=^linkerd-dashboard\.162\.38\.112\.221\.nip\.io$
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  namespace: linkerd-viz
+spec:
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+    spec:
+      containers:
+        - name: web
+          image: cr.l5d.io/linkerd/web:edge-25.3.3
+          args:
+            - -cluster-domain=cluster.local
+            - -controller-namespace=linkerd
+            - -log-level=info
+            - -enforced-host=^linkerd-dashboard\.162\.38\.112\.221\.nip\.io$
+            - -linkerd-metrics-api-addr=metrics-api.linkerd-viz.svc.cluster.local:8085

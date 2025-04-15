@@ -1,0 +1,55 @@
+==== Authentication and Authorization
+
+- As a guest user, I want to sign up so that I can create an account and access the platform.
+- As a guest user, I want to sign in so that I can access my account.
+- As a guest user, I want to reset my password so that I can recover my account.
+
+==== User Profile Management
+
+- As a registered user, I want to update my profile so that I can keep my information up to date.
+- As a registered user, I want to change my password so that I can recover my account.
+- As a registered user, I want to enable two-factor authentication so that I can add an extra layer of security to my account.
+
+
+==== Server Management
+
+- As a server admin or with the right permissions, I want to create a server so that I can manage a community.
+- As a server admin or with the right permissions, I want to delete a server so that I can remove it permanently.
+- As a server admin or with the right permissions, I want to update server settings so that I can configure the server according to my needs.
+- As a server admin or with the right permissions, I want to manage roles and permissions so that I can control access to different features.
+- As a server admin or with the right permissions, I want to be able to invite users to my server so that I can grow my community.
+- As a server admin or with the right permissions, I want to create webhooks so that I can automate actions in my server.
+
+==== Channel Management
+
+- As a server admin or with the right permissions, I want to create a channel so that I can organize discussions.
+- As a server admin or with the right permissions, I want to delete a channel so that I can remove unnecessary channels.
+- As a server admin or with the right permissions, I want to update channel settings so that I can configure the channel according to my needs.
+- As a server admin, I want to move channels so that I can reorder them.
+- As a registered user with the right permissions, I want to join a video or vocal call in a channel so that I can communicate in real-time with other users.
+- As a registered user, I want to share my screen during a call so that I can present content to others.
+- As a registered user, I want to mute/unmute myself during a call so that I can control my audio.
+- As a registered user, I want to select my audio and video devices so that I can choose the appropriate hardware for calls.
+
+==== Messaging
+
+- As a registered user with the right permissions, I want to send messages in a channel so that I can communicate with other members.
+- As a registered user, I want to edit my messages so that I can correct mistakes.
+- As a registered user, I want to delete my messages so that I can remove them.
+- As a registered user, I want to pin messages so that important messages are highlighted.
+- As a server admin or with the right permissions, I want to delete inappropriate messages so that I can maintain a healthy community environment.
+- As a registered user, I want to mention other users in a message so that they are notified.
+- As a registered user, I want to be able to see a preview of links shared in messages so that I can decide if I want to open them.
+- As a registered user, I want to send private messages so that I can communicate directly with friends.
+
+==== Frineds
+
+- As a registered user, I want to send friend requests so that I can connect with other users.
+- As a registered user, I want to accept friend requests so that I can add new friends.
+- As a registered user, I want to delete a friendship so that I can remove them from my friend list.
+
+==== Notifications
+
+- As a registered user, I want to receive notifications for friend requests so that I am aware when someone wants to connect.
+- As a registered user, I want to receive notifications for private messages so that I know when someone contacts me.
+- As a registered user, I want to receive notifications when I am mentioned in a channel so that I can respond quickly.

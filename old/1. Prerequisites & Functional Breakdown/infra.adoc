@@ -1,0 +1,52 @@
+==== Physical and Virtual Infrastructure
+
+The Beep application is deployed on a physical blade server located in the Polytech datacenter.
+
+===== Physical Server
+A dedicated bare-metal server hosts the infrastructure. It runs Proxmox as the hypervisor.
+
+===== Virtual Machine
+A single virtual machine, `beep-vm`, runs Debian 12 and hosts the entire K3s Kubernetes cluster. Access to the VM is restricted to internal network users via VPN. The VM is provisioned with 8 vCPUs and approximately 16 GB of RAM.
+
+==== Kubernetes Cluster
+
+===== General
+The infrastructure uses K3s, a lightweight Kubernetes distribution. It is configured as a single-node cluster, where `beep-vm` acts as both the control-plane and worker node. Networking is managed by the Flannel plugin.
+
+===== Application and Namespaces
+
+The Beep application is deployed within Kubernetes and organized into three distinct namespaces, each representing an environment:
+- `beep-development`
+- `beep-staging`
+- `beep-production`
+
+Each namespace contains the application stack for its environment, including frontend, backend API, and WebRTC services.
+
+==== Network and Access
+
+DNS management is handled via Cloudflare. Domains are configured to point to public IPs served by Cloudflare, which forwards traffic to the ingress controller inside the cluster. Access to the Kubernetes control plane is restricted and must go through the VPN.
+
+==== Ingress
+
+Ingress is managed by Traefik, deployed in the `kube-system` namespace. It acts as the main entrypoint for HTTP(S) traffic and routes requests to the appropriate services within the cluster.
+
+==== Storage and Persistence
+
+Persistent volumes are provisioned for stateful services, including PostgreSQL and Redis. These volumes ensure that application data is retained across restarts.
+
+==== Container Registry
+
+Harbor is used as a private container registry. Although deployed within the Kubernetes cluster, it serves as a shared registry and is not exclusive to the Beep application.
+
+==== Supporting Infrastructure Services
+
+In addition to core services, the following components are deployed as part of the cluster infrastructure:
+
+- *Sealed Secrets* is used to manage encrypted Kubernetes secrets declaratively.
+- *Cert-manager* automates TLS certificate issuance and renewal, ensuring secure ingress.
+- *GitLab Runner* is deployed to execute CI pipelines inside the cluster.
+- *Grafana, Loki, and Tempo* provide monitoring, log aggregation, and tracing capabilities.
+- *Terraform* is used to provision and manage all infrastructure resources as code.
+
+==== Infrastructure Diagram
+image::../diagrams/png/Infrastructure_diagram.drawio.png[width=1000, align=center] // TODO add the diagram

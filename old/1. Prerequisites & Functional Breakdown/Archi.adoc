@@ -1,0 +1,49 @@
+==== Overview
+
+The Beep application is composed of several independent microservices that expose REST APIs, orchestrated behind an API gateway. Each service has its own dedicated database. The application also includes a standalone WebRTC service used directly by the frontend for real-time communication.
+
+==== Components
+
+===== Frontend
+- Implemented in React
+- Communicates with backend services via the API gateway (Kong)
+- Interacts directly with the WebRTC service for media connections
+
+===== API Gateway
+- **Kong** is used to route HTTP(S) requests to the various microservices
+- Performs authentication and token validation
+
+===== Microservices
+Each microservice is responsible for a specific domain and owns its data:
+
+- **Notification API**
+* Handles user notifications
+* Backed by its own `Notif DB`
+
+- **Permission API**
+* Manages access controls and user roles
+* Backed by `Permission DB`
+
+- **Server API**
+* Manages user-created servers or groups
+* Backed by `Server DB`
+
+- **Channel API**
+* Handles channels inside servers
+* Backed by `Channel DB`
+
+-  **Friend API**
+* Manages friend requests and social graph
+* Backed by `Friend DB`
+
+- **Message API**
+* Manages messaging functionality between users
+* Backed by `Message DB`
+
+===== WebRTC Service
+- A separate service used for establishing peer-to-peer media connections
+- Not exposed through Kong, it is accessed directly by the frontend using WebRTC protocols
+
+==== Architecture Diagram
+
+image::../diagrams/png/beep-app-architecture.png[width=1000, align=center] // TODO replace with the actual path
