@@ -3,7 +3,7 @@ import {
   createEntityAdapter,
   createSlice,
 } from '@reduxjs/toolkit'
-import { UserEntity, UserState } from '@beep/contracts'
+import { UserEntity, UserState, UserStatePayload } from '@beep/contracts'
 // eslint-disable-next-line @nx/enforce-module-boundaries
 import { RootState } from '@beep/store'
 export const USER_KEY = 'user'
@@ -31,9 +31,26 @@ export const userSlice = createSlice({
       }>
     ) {
       if (payload.payload.accessToken) {
-        state.payload = JSON.parse(
+        // state.payload = JSON.parse(
+        //   atob(payload.payload.accessToken?.split('.')[1])
+        // )
+
+        const decodedJwt = JSON.parse(
           atob(payload.payload.accessToken?.split('.')[1])
         )
+        state.payload = {
+          audited_account: decodedJwt.email_verified || false,
+          sub: decodedJwt.sub,
+          exp: decodedJwt.exp,
+          resource_access: {
+            roles: [], // for now no roles
+          },
+          username: decodedJwt.preferred_username || '',
+          firstName: decodedJwt.given_name || '',
+          lastName: decodedJwt.family_name || '',
+          email: decodedJwt.email || '',
+        } as UserStatePayload
+
         document.cookie = `beep.access_token=${payload.payload.accessToken}; path=/;`
       }
 
