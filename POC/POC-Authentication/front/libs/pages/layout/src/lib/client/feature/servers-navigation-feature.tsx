@@ -8,13 +8,14 @@ import { useLogoutMutation } from '@beep/user'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import ServersNavigation from '../ui/servers-navigation'
+import { useAuth } from 'react-oidc-context'
 
 export function ServersNavigationFeature() {
   const { data: servers } = useGetMyServersQuery()
   const { openModal, closeModal } = useModal()
   const dispatch = useDispatch<AppDispatch>()
   const [leaveServer] = useLeaveVoiceChannelMutation()
-  const [logout] = useLogoutMutation()
+  const auth = useAuth()
   const onPrivateMessage = () => {
     navigate('/friends')
   }
@@ -23,8 +24,7 @@ export function ServersNavigationFeature() {
     leaveServer()
     dispatch({ type: 'CLOSE_WEBRTC' })
     dispatch(resetStore())
-    logout()
-    navigate('/authentication/signin')
+    auth.signoutRedirect()
   }
 
   return (

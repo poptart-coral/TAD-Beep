@@ -35,6 +35,7 @@ export default class UserService {
   }
 
   async findById(userId: string): Promise<User> {
+    console.log('findById')
     return User.findOrFail(userId)
   }
 

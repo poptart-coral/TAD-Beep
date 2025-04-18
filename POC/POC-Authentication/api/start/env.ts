@@ -76,4 +76,7 @@ export default await Env.create(new URL('../', import.meta.url), {
   */
   LOKI_HOST: Env.schema.string.optional(),
   LOKI_LOG_LEVEL: Env.schema.string.optional(),
+
+  KEYCLOAK_ISSUER: Env.schema.string(),
+  KEYCLOAK_JWKS_URI: Env.schema.string(),
 })

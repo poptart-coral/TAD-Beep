@@ -1,6 +1,5 @@
 import { HttpContext } from '@adonisjs/core/http'
 import { JwtGuard, JwtGuardOptions } from '#apps/authentication/guards/jwt_guard'
-import env from '#start/env'
 
 export function jwtGuard<UserProvider>(
   config: JwtGuardOptions & {
@@ -16,7 +15,8 @@ export function jwtGuard<UserProvider>(
       const provider = config.provider
 
       const options: JwtGuardOptions = {
-        secret: env.get('APP_KEY'),
+        getKey:        config.getKey,
+        verifyOptions: config.verifyOptions,
       }
       return (ctx: HttpContext) => {
         return new JwtGuard(ctx, provider, options)

@@ -102,7 +102,7 @@ export default class User extends compose(BaseModel, AuthFinder) {
 
   @beforeCreate()
   static async generateUuid(model: User) {
-    model.id = randomUUID()
+    // model.id = randomUUID()
     model.serialNumber = generateSnowflake()
   }
 }

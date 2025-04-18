@@ -3,6 +3,8 @@ import { InferAuthEvents, Authenticators, InferAuthenticators } from '@adonisjs/
 import { sessionGuard, sessionUserProvider } from '@adonisjs/auth/session'
 import { jwtGuard } from '#apps/authentication/providers/jwt'
 import env from '#start/env'
+import { Env } from '@adonisjs/core/env'
+import { getKey } from '#start/keycloakJwks'
 
 const authConfig = defineConfig({
   default: 'jwt',
@@ -14,11 +16,16 @@ const authConfig = defineConfig({
       }),
     }),
     jwt: jwtGuard({
-      secret: env.get('APP_KEY'),
       provider: {
         model: () => import('#apps/users/models/user'),
         tokens: 'accessTokens',
-        uids: ['email'],
+        uids: ['sub'],                              // <- on utilise sub comme ID
+      },
+      getKey: getKey,                               // <- fonction JWKS
+      verifyOptions: {                              // <- issuer + audience
+        algorithms: ['RS256'],
+        issuer:    env.get('KEYCLOAK_ISSUER'),
+        //audience:  process.env.KEYCLOAK_AUDIENCE,
       },
     }),
   },

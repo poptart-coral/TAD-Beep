@@ -7,18 +7,18 @@ import UsernameAlreadyExistsExeption from '#apps/users/exceptions/username_alrea
 import Token from '#apps/users/models/token'
 import User from '#apps/users/models/user'
 import env from '#start/env'
-import { Authenticator, errors } from '@adonisjs/auth'
+import { errors } from '@adonisjs/auth'
 import logger from '@adonisjs/core/services/logger'
 import jwt from 'jsonwebtoken'
 import { DateTime } from 'luxon'
 import crypto from 'node:crypto'
 import redis from '@adonisjs/redis/services/main'
 import transmit from '@adonisjs/transmit/services/main'
-import { Authenticators } from '@adonisjs/auth/types'
 import { authenticator } from 'otplib'
 import InvalidQRCodeException from '#apps/users/exceptions/invalid_qrcode_exception'
 import TotpMissingException from '#apps/users/exceptions/totp_missing_exception'
 import CurrentPasswordMismatchException from '../exceptions/current_password_mismatch_exception.js'
+import { JwtPayloadContract } from '../guards/jwt_guard.js'
 
 export default class AuthenticationService {
   DEFAULT_PP_URL = 'default_profile_picture.png'
@@ -35,6 +35,28 @@ export default class AuthenticationService {
         guardDriverName: 'jwt',
       })
     }
+  }
+
+  public async registerKeycloakUser(payload: JwtPayloadContract): Promise<User> {
+    // 1) Vérifier s’il existe déjà
+    let user = await User.find(payload.sub)
+    if (user) {
+      return user
+    }
+    const randomPassword = crypto.randomBytes(16).toString('hex')
+    user = await User.create({
+      id: payload.sub,
+      username: payload.preferred_username ?? payload.email.split('@')[0],
+      email: payload.email.toLowerCase(),
+      firstName: payload.given_name ?? '',
+      lastName: payload.family_name ?? '',
+      password: randomPassword,
+      profilePicture: this.DEFAULT_PP_URL,    // ou un placeholder
+      verifiedAt: DateTime.now(),
+    })
+
+    console.log('user: ', user)
+    return user
   }
 
   async registerUser(schemaUser: CreateAuthenticationSchema): Promise<User> {
@@ -197,28 +219,28 @@ export default class AuthenticationService {
     return user
   }
 
-  async handleSignIn(user: User, auth: Authenticator<Authenticators>) {
-    const tokens = await auth.use('jwt').generate(user)
+  // async handleSignIn(user: User, auth: Authenticator<Authenticators>) {
+  //   const tokens = await auth.use('jwt').generate(user)
 
-    await redis.hset(
-      'userStates',
-      user.id,
-      JSON.stringify({
-        id: user.id,
-        username: user.username,
-        expiresAt: Date.now() + 1200 * 1000, // Timestamp now + 20 minutes
-      })
-    )
+  //   await redis.hset(
+  //     'userStates',
+  //     user.id,
+  //     JSON.stringify({
+  //       id: user.id,
+  //       username: user.username,
+  //       expiresAt: Date.now() + 1200 * 1000, // Timestamp now + 20 minutes
+  //     })
+  //   )
 
-    transmit.broadcast('users/state', {
-      message: 'update user connected',
-    })
+  //   transmit.broadcast('users/state', {
+  //     message: 'update user connected',
+  //   })
 
-    return {
-      user,
-      tokens,
-    }
-  }
+  //   return {
+  //     user,
+  //     tokens,
+  //   }
+  // }
 
   async checkPassword(userId: string, password: string): Promise<boolean> {
     const user = await User.findOrFail(userId)

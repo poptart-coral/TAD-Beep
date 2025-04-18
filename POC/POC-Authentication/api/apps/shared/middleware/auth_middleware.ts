@@ -14,7 +14,8 @@ export default class AuthMiddleware {
   redirectTo = '/authentication/signin'
 
   async userIsAudited(jwt: JwtPayloadContract) {
-    if (!jwt.audited_account) {
+    if (!jwt.email_verified) {
+      console.log('jwt not audited : ', jwt)
       throw new authErrors.E_UNAUTHORIZED_ACCESS('Account is not audited', {
         guardDriverName: 'jwt',
       })
@@ -29,7 +30,6 @@ export default class AuthMiddleware {
     } = {}
   ) {
     await ctx.auth.authenticateUsing(options.guards, { loginRoute: this.redirectTo })
-
     const jwt = ctx.auth.user as JwtPayloadContract
 
     if (!jwt) {

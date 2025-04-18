@@ -1,3 +1,4 @@
+import { JwtPayloadContract } from '#apps/authentication/guards/jwt_guard'
 import AuthenticationService from '#apps/authentication/services/authentication_service'
 import User from '#apps/users/models/user'
 import UserService from '#apps/users/services/user_service'
@@ -30,11 +31,32 @@ export default class UsersController {
   }
 
   async findMe({ auth, response }: HttpContext) {
-    const payload = auth.use('jwt').payload
-    const user = await this.userService.findById(payload?.sub ?? '')
-    type UserOmit = Omit<User, 'password'>
-    const omittedUser: UserOmit = user
-    return response.send(omittedUser)
+    console.log('findMe')
+    const payload = auth.use('jwt').payload as JwtPayloadContract
+    if(payload.sub === undefined) {
+      console.log('payload.sub is undefined')
+      return response.abort({ message: "Can't find the user" })
+    }
+    console.log('payload: ', payload)
+    let user
+    try {
+      user = await this.userService.findById(payload.sub)
+      console.log('user: ', user)
+    } catch (e) {
+      console.log('user not found', e)
+      //user = null
+      user = await this.authenticationService.registerKeycloakUser(payload)
+    }
+    
+    console.log('user: ', user)
+    // if (!user) {
+    //   console.log('user is null')
+    //   user = await this.authenticationService.registerKeycloakUser(payload)
+    // }
+
+    const { password, ...safeUser } = user.toJSON()
+
+    return response.send(safeUser)
   }
 
   async update({ request, auth, response }: HttpContext) {
