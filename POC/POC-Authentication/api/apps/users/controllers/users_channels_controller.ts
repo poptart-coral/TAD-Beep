@@ -9,17 +9,13 @@ export default class UserChannelsController {
   constructor(protected channelService: ChannelService) {}
 
   async index({ auth }: HttpContext) {
-    console.log('UserChannelsController.index')
     const userPayload = auth.user as JwtPayloadContract
-    console.log('userPayload: ', userPayload)
     let channels : Channel[] = []
     try {
       channels = await this.channelService.findPrivateOrderedForUserOrFail(userPayload.sub!)
-    } catch (e) {
-      console.log('channels not found', e)
+    } catch {
       channels = []
     }
-    console.log('channels: ', channels)
     return channels
   }
 }

@@ -31,29 +31,17 @@ export default class UsersController {
   }
 
   async findMe({ auth, response }: HttpContext) {
-    console.log('findMe')
     const payload = auth.use('jwt').payload as JwtPayloadContract
     if(payload.sub === undefined) {
-      console.log('payload.sub is undefined')
       return response.abort({ message: "Can't find the user" })
     }
-    console.log('payload: ', payload)
     let user
     try {
       user = await this.userService.findById(payload.sub)
-      console.log('user: ', user)
-    } catch (e) {
-      console.log('user not found', e)
-      //user = null
+    } catch {
       user = await this.authenticationService.registerKeycloakUser(payload)
     }
     
-    console.log('user: ', user)
-    // if (!user) {
-    //   console.log('user is null')
-    //   user = await this.authenticationService.registerKeycloakUser(payload)
-    // }
-
     const { password, ...safeUser } = user.toJSON()
 
     return response.send(safeUser)

@@ -15,7 +15,6 @@ export default class AuthMiddleware {
 
   async userIsAudited(jwt: JwtPayloadContract) {
     if (!jwt.email_verified) {
-      console.log('jwt not audited : ', jwt)
       throw new authErrors.E_UNAUTHORIZED_ACCESS('Account is not audited', {
         guardDriverName: 'jwt',
       })

@@ -15,8 +15,6 @@ export function getKey(
     header: jwt.JwtHeader,
     callback: jwt.SigningKeyCallback
 ) {
-    console.log('[JWT GUARD] getKey called, kid=', header.kid)
-
     if(!header.kid) {
         return callback(new Error('No kid found in header'))
     }
@@ -27,8 +25,6 @@ export function getKey(
         }
         if (!key) return callback(new Error('No key found'))
         const pub = key.getPublicKey()
-        console.log('[JWT GUARD] Retrieved publicKey (truncated)=', (pub as string).slice(0, 30))
-
         callback(null, pub)
     })
 }

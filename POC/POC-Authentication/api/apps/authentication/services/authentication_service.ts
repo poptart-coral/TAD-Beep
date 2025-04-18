@@ -38,7 +38,6 @@ export default class AuthenticationService {
   }
 
   public async registerKeycloakUser(payload: JwtPayloadContract): Promise<User> {
-    // 1) Vérifier s’il existe déjà
     let user = await User.find(payload.sub)
     if (user) {
       return user
@@ -55,7 +54,6 @@ export default class AuthenticationService {
       verifiedAt: DateTime.now(),
     })
 
-    console.log('user: ', user)
     return user
   }
 
